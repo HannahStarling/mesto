@@ -1,0 +1,5 @@
+.page {
+  width: calc(100% - 200px * 2);
+  max-width: 880px;
+  margin: 0 auto; /* non-block property */
+}
