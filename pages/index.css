@@ -3,8 +3,9 @@
 /* wrappers */
 @import url(../blocks/root/root.css);
 @import url(../blocks/page/page.css);
+@import url(../blocks/page/__footer/page__footer.css);
 @import url(../blocks/root/__page/root__page.css);
-@import url(../blocks/content/__reset/content__profile.css);
+@import url(../blocks/content/__center/content__center.css);
 
 /* links */
 @import url(../blocks/link-opacity/link-opacity.css);
