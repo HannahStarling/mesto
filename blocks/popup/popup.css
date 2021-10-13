@@ -1,0 +1,17 @@
+.popup {
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  /* вырываем из потока */
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: none;
+}
+
+/* для анимации */
+/* opacity: 0;
+  transition: visibility 0.2s linear;
+  visibility: hidden; */
