@@ -8,3 +8,9 @@
   border-radius: 10px;
   overflow: hidden;
 }
+
+@media screen and (max-width: 920px) {
+  .elements__item {
+    min-width: 282px;
+  }
+}
