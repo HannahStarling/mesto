@@ -26,9 +26,13 @@
       <main class="content page__content">
         <!-- Секция, блок cover profile -->
         <section class="profile content__center">
-          <img src="./images/avatar.jpg" alt="Аватар профиля." class="profile__image" />
+          <img
+            src="./images/avatar.jpg"
+            alt="Аватар профиля. Фото улыбающегося Жака-Ив Кусто в красной шапке на фоне моря."
+            class="profile__image"
+          />
           <div class="profile__info">
-            <p class="profile__name">Жак-Ив Кусто</p>
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__description">Исследователь океана</p>
             <button
               class="button profile__btn profile__btn_action_edit"
@@ -41,11 +45,11 @@
           <ul class="elements__list">
             <li class="elements__item">
               <img
-                src="https://picsum.photos/300"
-                alt="Красивое место Россия."
+                src="./images/elements/croatia.jpg"
+                alt="Маяк на фоне моря на мысе."
                 class="elements__image"
               />
-              <h2 class="elements__title">Lorem ipsum</h2>
+              <h2 class="elements__title">Мыс Марлера</h2>
               <button
                 class="button elements__like-btn elements__like-btn_active"
                 type="button"
@@ -53,47 +57,47 @@
             </li>
             <li class="elements__item">
               <img
-                src="https://picsum.photos/400"
-                alt="Красивое место Россия."
+                src="./images/elements/lecco.jpg"
+                alt="Итальянское озеро Комо с парусными лодками на фоне гор в Лекко."
                 class="elements__image"
               />
-              <h2 class="elements__title">Lorem ipsum</h2>
+              <h2 class="elements__title">Лекко</h2>
               <button class="button elements__like-btn" type="button"></button>
             </li>
             <li class="elements__item">
               <img
-                src="https://picsum.photos/500"
-                alt="Красивое место Россия."
+                src="./images/elements/moscow.jpg"
+                alt="Храм Василия Блаженого в новогоднем окружении."
                 class="elements__image"
               />
-              <h2 class="elements__title">Lorem ipsum</h2>
+              <h2 class="elements__title">Москва</h2>
               <button class="button elements__like-btn" type="button"></button>
             </li>
             <li class="elements__item">
               <img
-                src="https://picsum.photos/600"
-                alt="Красивое место Россия."
+                src="./images/elements/pisa.jpg"
+                alt="Церковь Санта-Мария делла Спина на фоне пизанских домов."
                 class="elements__image"
               />
-              <h2 class="elements__title">Lorem ipsum</h2>
+              <h2 class="elements__title">Пиза</h2>
               <button class="button elements__like-btn" type="button"></button>
             </li>
             <li class="elements__item">
               <img
-                src="https://picsum.photos/700"
-                alt="Красивое место Россия."
+                src="./images/elements/roma.jpg"
+                alt="Собор Святого Петра в окружении римских деревьев."
                 class="elements__image"
               />
-              <h2 class="elements__title">Lorem ipsum</h2>
+              <h2 class="elements__title">Ватикан</h2>
               <button class="button elements__like-btn" type="button"></button>
             </li>
             <li class="elements__item">
               <img
-                src="https://picsum.photos/800"
-                alt="Красивое место Россия."
+                src="./images/elements/venezia.jpg"
+                alt="Вид с лодки плывущей по гранд каналу, венецианские дома."
                 class="elements__image"
               />
-              <h2 class="elements__title">Lorem ipsum</h2>
+              <h2 class="elements__title">Венеция</h2>
               <button class="button elements__like-btn" type="button"></button>
             </li>
           </ul>
@@ -104,22 +108,44 @@
         <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
       </footer>
       <!-- POPUP START -->
-    <section class="popup page__popup"> <!-- <template> ??? -->
-      <form class="popup__container" id="user-form">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <fieldset class="popup__input-container">
-          <input type="text" class="popup__item popup__item_el_name" id="profile-name" name="profile-name"
-            placeholder="Имя профиля" minlength="1" maxlength="50" required />
-          <input type="text" class="popup__item popup__item_el_description" id="profile-description"
-            name="profile-description" placeholder="Описание профиля" minlength="1" maxlength="280" required />
-        </fieldset>
-        <button class="button popup__btn popup__btn_action_submit" type="submit">
-          Сохранить
-        </button>
-        <button class="button popup__btn popup__btn_action_close" type="button"></button>
-      </form>
-    </section>
-  </div>
+      <section class="popup page__popup">
+        <!-- <template> ??? -->
+        <form class="popup__container" id="user-form">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <fieldset class="popup__input-container">
+            <input
+              type="text"
+              class="popup__item popup__item_el_name"
+              id="profile-name"
+              name="profile-name"
+              placeholder="Имя профиля"
+              minlength="1"
+              maxlength="50"
+              required
+            />
+            <input
+              type="text"
+              class="popup__item popup__item_el_description"
+              id="profile-description"
+              name="profile-description"
+              placeholder="Описание профиля"
+              minlength="1"
+              maxlength="280"
+              required
+            />
+          </fieldset>
+          <button
+            class="button popup__btn popup__btn_action_submit"
+            type="submit"
+          >
+            Сохранить
+          </button>
+          <button
+            class="button popup__btn popup__btn_action_close"
+            type="button"
+          ></button>
+        </form>
+      </section>
     </div>
     <script src="./script.js"></script>
   </body>
