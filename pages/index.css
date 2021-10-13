@@ -5,7 +5,10 @@
 @import url(../blocks/page/page.css);
 @import url(../blocks/content/__reset/content__profile.css);
 
-/* button */
+/* links */
+@import url(../blocks/link-opacity/link-opacity.css);
+
+/* buttons */
 @import url(../blocks/button/button.css);
 
 /* header */
