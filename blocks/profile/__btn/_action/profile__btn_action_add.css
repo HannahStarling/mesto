@@ -8,3 +8,24 @@
   margin: 0 0 0 auto;
   align-self: center;
 }
+
+@media all and (max-width: 1061px) {
+  .profile__btn_action_add {
+    margin: 0;
+    grid-column: 1/-1;
+    width: 100%;
+  }
+}
+
+@media all and (max-width: 680px) {
+  .profile__btn_action_add {
+    width: 100%;
+  }
+}
+
+@media all and (max-width: 620px) {
+  .profile__btn_action_add {
+    width: 282px;
+    background-size: 6%;
+  }
+}

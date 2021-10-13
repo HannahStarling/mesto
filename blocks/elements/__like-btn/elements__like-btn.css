@@ -9,3 +9,9 @@
 .elements__like-btn:hover {
   opacity: 0.5;
 }
+
+@media all and (max-width: 680px) {
+  .elements__like-btn {
+    margin: 0 20px 0 0;
+  }
+}

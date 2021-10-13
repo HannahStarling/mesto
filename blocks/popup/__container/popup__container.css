@@ -9,3 +9,10 @@
   position: relative;
   box-sizing: border-box;
 }
+
+@media all and (max-width: 620px) {
+  .popup__container {
+    padding: 25px 22px;
+    max-width: 282px;
+  }
+}

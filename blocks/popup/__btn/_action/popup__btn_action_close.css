@@ -15,3 +15,12 @@
 .popup__btn_action_close:hover {
   opacity: 0.6;
 }
+
+@media all and (max-width: 620px) {
+  .popup__btn_action_close {
+    width: 25px;
+    height: 25px;
+    right: 0;
+    top: -30px;
+  }
+}
