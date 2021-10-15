@@ -18,17 +18,11 @@ function openPopup() {
   nameInput.value = profileName.textContent;
   aboutInput.value = profileDescription.textContent;
 }
-// Прикрепляем обработчик открытия
-editButton.addEventListener('click', openPopup);
 
 function closePopup() {
   popup.classList.remove('popup_opened');
 }
 
-// Прикрепляем обработчик закрытия
-closeButton.addEventListener('click', closePopup);
-
-/* сохранение информации о себе */
 function editProfile(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
@@ -36,5 +30,8 @@ function editProfile(evt) {
   closePopup();
 }
 
-// Прикрепляем обработчик к форме
+/* EVENTS */
+// for ProfileInfo
+editButton.addEventListener('click', openPopup);
+closeButton.addEventListener('click', closePopup);
 popupContainer.addEventListener('submit', editProfile);
