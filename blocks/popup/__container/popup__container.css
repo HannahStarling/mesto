@@ -9,6 +9,8 @@
   position: relative;
   box-sizing: border-box;
 }
+/*
+По макету у контейнера есть небольшая тень box-shadow. Ее необходимо добавить. */
 
 @media all and (max-width: 620px) {
   .popup__container {
