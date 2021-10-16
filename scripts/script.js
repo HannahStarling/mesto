@@ -1,10 +1,10 @@
 // Находим секцию popup в DOM
 let popup = document.querySelector('.popup');
 // Находим форму в DOM
-let popupContainer = popup.querySelector('.popup__container');
+let popupForm = popup.querySelector('.popup__form');
 // Находим поля формы в DOM
-let nameInput = popupContainer.querySelector('.popup__item_el_name');
-let aboutInput = popupContainer.querySelector('.popup__item_el_description');
+let nameInput = popupForm.querySelector('.popup__item_el_name');
+let aboutInput = popupForm.querySelector('.popup__item_el_description');
 // Находим существующее описание в DOM
 let profile = document.querySelector('.profile');
 let profileName = profile.querySelector('.profile__name');
@@ -34,4 +34,4 @@ function editProfile(evt) {
 // for ProfileInfo
 editButton.addEventListener('click', openPopup);
 closeButton.addEventListener('click', closePopup);
-popupContainer.addEventListener('submit', editProfile);
+popupForm.addEventListener('submit', editProfile);
