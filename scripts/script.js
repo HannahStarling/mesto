@@ -1,37 +1,67 @@
-// Находим секцию popup в DOM
-let popup = document.querySelector('.popup');
+// Находим секции popup в DOM
+const popupProfile = document.querySelector('.popup_edit-profile');
+const popupNewCard = document.querySelector('.popup_add-card');
 // Находим форму в DOM
-let popupForm = popup.querySelector('.popup__form');
+const popupProfileForm = popupProfile.querySelector('.popup__form');
+const popupCardForm = popupNewCard.querySelector('.popup__form');
 // Находим поля формы в DOM
-let nameInput = popupForm.querySelector('.popup__item_el_name');
-let aboutInput = popupForm.querySelector('.popup__item_el_description');
+const nameInput = popupProfileForm.querySelector('.popup__item_el_name');
+const aboutInput = popupProfileForm.querySelector(
+  '.popup__item_el_description'
+);
 // Находим существующее описание в DOM
-let profile = document.querySelector('.profile');
-let profileName = profile.querySelector('.profile__name');
-let profileDescription = profile.querySelector('.profile__description');
+const profile = document.querySelector('.profile');
+const profileName = profile.querySelector('.profile__name');
+const profileDescription = profile.querySelector('.profile__description');
 // Находим кнопки в DOM
-let editButton = profile.querySelector('.profile__btn_action_edit');
-let closeButton = popup.querySelector('.popup__btn_action_close');
+const editButton = profile.querySelector('.profile__btn_action_edit');
+const addButton = profile.querySelector('.profile__btn_action_add');
+const closeButtonProfile = popupProfile.querySelector(
+  '.popup__btn_action_close'
+);
+const closeButtonNewCard = popupNewCard.querySelector(
+  '.popup__btn_action_close'
+);
 
-function openPopup() {
-  popup.classList.add('popup_opened');
+// for Profile
+function openPopupEditProfile() {
+  popupProfile.classList.add('popup_opened');
   nameInput.value = profileName.textContent;
   aboutInput.value = profileDescription.textContent;
 }
 
-function closePopup() {
-  popup.classList.remove('popup_opened');
+function closePopupProfile() {
+  popupProfile.classList.remove('popup_opened');
 }
 
 function editProfile(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDescription.textContent = aboutInput.value;
-  closePopup();
+  closePopupProfile();
+}
+// for Card
+function openPopupNewCard() {
+  popupNewCard.classList.add('popup_opened');
 }
 
+function closePopupNewCard() {
+  popupNewCard.classList.remove('popup_opened');
+}
+
+function addCard(evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileDescription.textContent = aboutInput.value;
+  closePopupProfile();
+}
 /* EVENTS */
-// for ProfileInfo
-editButton.addEventListener('click', openPopup);
-closeButton.addEventListener('click', closePopup);
-popupForm.addEventListener('submit', editProfile);
+// for Profile
+editButton.addEventListener('click', openPopupEditProfile);
+closeButtonProfile.addEventListener('click', closePopupProfile);
+popupProfileForm.addEventListener('submit', editProfile);
+// for Card
+addButton.addEventListener('click', openPopupNewCard);
+closeButtonNewCard.addEventListener('click', closePopupNewCard);
+
+popupProfileForm.addEventListener('submit', addCard);
