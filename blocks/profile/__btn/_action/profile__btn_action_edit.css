@@ -1,5 +1,6 @@
 .profile__btn_action_edit {
   padding: 10px;
+  max-width: 10px;
   border: 1px solid #ffffff;
   box-sizing: border-box;
   background: url(../../../../images/edit-btn.svg) no-repeat center / 50%;
