@@ -3,6 +3,7 @@
   grid-template-rows: 282px 1fr;
   grid-template-columns: 1fr min-content;
   gap: 25px;
+  position: relative;
   max-width: 282px;
   background: #fff;
   border-radius: 10px;

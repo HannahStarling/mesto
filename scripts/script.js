@@ -11,7 +11,11 @@ const profileName = profile.querySelector('.profile__name');
 const profileDescription = profile.querySelector('.profile__description');
 const editButton = profile.querySelector('.profile__btn_action_edit');
 const addButton = profile.querySelector('.profile__btn_action_add');
+
 const cardsContainer = document.querySelector('.elements__list');
+// так мы находим первую карточку а не все
+const card = cardsContainer.querySelector('.elements__item');
+
 const closeButtonProfile = popupProfile.querySelector(
   '.popup__btn_action_close'
 );
@@ -55,7 +59,22 @@ function addCard(cardTitleValue, cardLinkValue) {
   cardElement.querySelector('.elements__title').textContent = cardTitleValue;
   cardElement.querySelector('.elements__image').src = cardLinkValue;
   cardsContainer.prepend(cardElement);
+
+  const deleteButton = cardElement.querySelector('.elements__delete-btn');
+  deleteButton.addEventListener('click', function (evt) {
+    /* const cardItem = deleteButton.closest('.elements__item'); */
+    evt.target.closest('.elements__item').remove();
+    /* cardItem.remove(); */
+  });
 }
+
+// только на первую карточку, решим через рендеринг карточек
+const deleteButton = card.querySelector('.elements__delete-btn');
+deleteButton.addEventListener('click', function (evt) {
+  /* const cardItem = deleteButton.closest('.elements__item'); */
+  evt.target.closest('.elements__item').remove();
+  /* cardItem.remove(); */
+});
 
 /* EVENTS */
 editButton.addEventListener('click', openPopupEditProfile);

@@ -31,6 +31,7 @@
 @import url(../blocks/profile/__btn/profile__btn.css);
 @import url(../blocks/profile/__btn/_action/profile__btn_action_add.css);
 @import url(../blocks/profile/__btn/_action/profile__btn_action_edit.css);
+@import url(../blocks/elements/__delete-btn/elements__delete-btn.css);
 
 /* elements */
 @import url(../blocks/elements/elements.css);
