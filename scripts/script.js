@@ -9,13 +9,13 @@ const aboutInput = popupProfileForm.querySelector(
 const profile = document.querySelector('.profile');
 const profileName = profile.querySelector('.profile__name');
 const profileDescription = profile.querySelector('.profile__description');
-const editButton = profile.querySelector('.profile__btn_action_edit');
-const addButton = profile.querySelector('.profile__btn_action_add');
-
 const cardsContainer = document.querySelector('.elements__list');
 // так мы находим первую карточку а не все
 const card = cardsContainer.querySelector('.elements__item');
-
+const editButton = profile.querySelector('.profile__btn_action_edit');
+const addButton = profile.querySelector('.profile__btn_action_add');
+const deleteButton = card.querySelector('.elements__delete-btn');
+const likeButton = card.querySelector('.elements__like-btn');
 const closeButtonProfile = popupProfile.querySelector(
   '.popup__btn_action_close'
 );
@@ -66,14 +66,18 @@ function addCard(cardTitleValue, cardLinkValue) {
     evt.target.closest('.elements__item').remove();
     /* cardItem.remove(); */
   });
+  const likeButton = cardElement.querySelector('.elements__like-btn');
+  likeButton.addEventListener('click', function (evt) {
+    evt.target.classList.toggle('elements__like-btn_active');
+  });
 }
 
-// только на первую карточку, решим через рендеринг карточек
-const deleteButton = card.querySelector('.elements__delete-btn');
+// events только на первую карточку, решим через рендеринг карточек
 deleteButton.addEventListener('click', function (evt) {
-  /* const cardItem = deleteButton.closest('.elements__item'); */
   evt.target.closest('.elements__item').remove();
-  /* cardItem.remove(); */
+});
+likeButton.addEventListener('click', function (evt) {
+  evt.target.classList.toggle('elements__like-btn_active');
 });
 
 /* EVENTS */
