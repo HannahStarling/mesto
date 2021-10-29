@@ -8,7 +8,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1"
     />
     <link rel="stylesheet" href="./pages/index.css" />
-    <title>Mesto</title>
+    <title>Место</title>
   </head>
   <body class="root">
     <div class="page root__page">
@@ -140,9 +140,12 @@
     </div>
     <div class="popup page__popup popup_type_image">
       <div class="popup__container popup__container_type_image">
-        <!-- значения должны браться из карточки, на которую нажали -->
         <figure class="popup__figure">
-          <img src="#" class="popup__image" />
+          <img
+            src="#"
+            class="popup__image"
+            alt="Фотография добавленная пользователем."
+          />
           <figcaption class="popup__caption"></figcaption>
           <button
             class="button popup__btn popup__btn_action_close"
@@ -152,8 +155,7 @@
         </figure>
       </div>
     </div>
-
-    <template id="card-template">
+    <template class="card-template">
       <li class="elements__item">
         <img class="elements__image" />
         <h2 class="elements__title"></h2>
