@@ -96,65 +96,65 @@
           ></button>
         </div>
       </div>
-    </div>
-
-    <div class="popup page__popup popup_type_add-card">
-      <div class="popup__container">
-        <form class="popup__form" id="element-form" name="element-form">
-          <h2 class="popup__title">Новое место</h2>
-          <fieldset class="popup__input-container">
-            <input
-              type="text"
-              class="popup__item popup__item_el_title"
-              id="element-title"
-              name="element-title"
-              placeholder="Название"
-              minlength="1"
-              maxlength="280"
-              required
-            />
-            <input
-              type="text"
-              class="popup__item popup__item_el_link"
-              id="element-link"
-              name="element-link"
-              placeholder="Ссылка на картинку"
-              minlength="1"
-              maxlength="280"
-              required
-            />
-          </fieldset>
+      <div class="popup page__popup popup_type_add-card">
+        <div class="popup__container">
+          <form class="popup__form" id="element-form" name="element-form">
+            <h2 class="popup__title">Новое место</h2>
+            <fieldset class="popup__input-container">
+              <input
+                type="text"
+                class="popup__item popup__item_el_title"
+                id="element-title"
+                name="element-title"
+                placeholder="Название"
+                minlength="1"
+                maxlength="280"
+                required
+              />
+              <input
+                type="text"
+                class="popup__item popup__item_el_link"
+                id="element-link"
+                name="element-link"
+                placeholder="Ссылка на картинку"
+                minlength="1"
+                maxlength="280"
+                required
+              />
+            </fieldset>
+            <button
+              class="button popup__btn popup__btn_action_submit"
+              type="submit"
+            >
+              Создать
+            </button>
+          </form>
           <button
-            class="button popup__btn popup__btn_action_submit"
-            type="submit"
-          >
-            Создать
-          </button>
-        </form>
-        <button
-          class="button popup__btn popup__btn_action_close"
-          type="button"
-          aria-label="Закрыть форму добавления нового места."
-        ></button>
+            class="button popup__btn popup__btn_action_close"
+            type="button"
+            aria-label="Закрыть форму добавления нового места."
+          ></button>
+        </div>
       </div>
-    </div>
-    <div class="popup page__popup popup_type_image">
-      <div class="popup__container popup__container_type_image">
-        <figure class="popup__figure">
-          <img
-            src="#"
-            class="popup__image"
-            alt="Фотография добавленная пользователем."
-          />
-          <figcaption class="popup__caption"></figcaption>
+      <div class="popup page__popup popup_type_image">
+        <div class="popup__container popup__container_type_image">
+          <figure class="popup__figure">
+            <img
+              src="#"
+              class="popup__image"
+              alt="Фотография добавленная пользователем."
+            />
+            <figcaption class="popup__caption"></figcaption>
+          </figure>
           <button
             class="button popup__btn popup__btn_action_close"
             type="button"
             aria-label="Закрыть картинку."
           ></button>
-        </figure>
+        </div>
       </div>
     </div>
+
     <template class="card-template">
       <li class="elements__item">
         <img class="elements__image" />
