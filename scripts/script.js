@@ -1,6 +1,6 @@
-const popupProfile = document.querySelector('.popup_edit-profile');
-const popupNewCard = document.querySelector('.popup_add-card');
-
+const popupProfile = document.querySelector('.popup_type_edit-profile');
+const popupNewCard = document.querySelector('.popup_type_add-card');
+const popupImage = document.querySelector('.popup_type_image');
 const popupProfileForm = popupProfile.querySelector('.popup__form');
 const popupCardForm = popupNewCard.querySelector('.popup__form');
 const nameInput = popupProfileForm.querySelector('.popup__item_el_name');
@@ -22,6 +22,9 @@ const closeButtonProfile = popupProfile.querySelector(
 const closeButtonNewCard = popupNewCard.querySelector(
   '.popup__btn_action_close'
 );
+const picture = popupImage.querySelector('.popup__image');
+const pictureCaption = popupImage.querySelector('.popup__caption');
+const closeButtonImage = popupImage.querySelector('.popup__btn_action_close');
 
 const initialCards = [
   { name: 'Мыс Марлера', link: './images/elements/croatia.jpg' },
@@ -39,18 +42,12 @@ function renderCard() {
     addCard(item.name, item.link);
   });
 }
-/* function renderCard() {
-  for (let i = 0; i < initialCards.length; i++) {
-    addCard(initialCards[i].name, initialCards[i].link);
-  }
-} */
 
 function openPopup(popup) {
   if (popup === popupProfile) {
     nameInput.value = profileName.textContent;
     aboutInput.value = profileDescription.textContent;
   }
-
   popup.classList.add('popup_opened');
 }
 
@@ -77,14 +74,21 @@ function addCard(cardTitleValue, cardLinkValue) {
 
   const deleteButton = cardElement.querySelector('.elements__delete-btn');
   deleteButton.addEventListener('click', function (evt) {
-    /* const cardItem = deleteButton.closest('.elements__item'); */
     evt.target.closest('.elements__item').remove();
-    /* cardItem.remove(); */
   });
+
   const likeButton = cardElement.querySelector('.elements__like-btn');
   likeButton.addEventListener('click', function (evt) {
     evt.target.classList.toggle('elements__like-btn_active');
   });
+
+  const image = document.querySelector('.elements__image');
+  image.addEventListener('click', () => {
+    picture.src = cardLinkValue;
+    pictureCaption.textContent = cardTitleValue;
+    openPopup(popupImage);
+  });
+
   closePopup(popupNewCard);
 }
 
@@ -93,6 +97,7 @@ editButton.addEventListener('click', () => openPopup(popupProfile));
 addButton.addEventListener('click', () => openPopup(popupNewCard));
 closeButtonProfile.addEventListener('click', () => closePopup(popupProfile));
 closeButtonNewCard.addEventListener('click', () => closePopup(popupNewCard));
+closeButtonImage.addEventListener('click', () => closePopup(popupImage));
 popupProfileForm.addEventListener('submit', editProfile);
 
 popupCardForm.addEventListener('submit', function (evt) {
@@ -104,5 +109,5 @@ popupCardForm.addEventListener('submit', function (evt) {
 
   title.value = '';
   photo.value = '';
-  closePopup();
+  closePopup(popupNewCard);
 });
