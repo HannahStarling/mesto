@@ -4,5 +4,6 @@
   border-radius: 0px;
   box-shadow: none;
   align-items: center;
+  width: auto;
   max-width: 75vw;
 }
