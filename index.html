@@ -56,7 +56,7 @@
         <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
       </footer>
       <!-- POPUP START -->
-      <div class="popup page__popup popup_edit-profile">
+      <div class="popup page__popup popup_type_edit-profile">
         <div class="popup__container">
           <form class="popup__form" id="user-form" name="user-form">
             <h2 class="popup__title">Редактировать профиль</h2>
@@ -98,7 +98,7 @@
       </div>
     </div>
 
-    <div class="popup page__popup popup_add-card">
+    <div class="popup page__popup popup_type_add-card">
       <div class="popup__container">
         <form class="popup__form" id="element-form" name="element-form">
           <h2 class="popup__title">Новое место</h2>
@@ -136,6 +136,20 @@
           type="button"
           aria-label="Закрыть форму добавления нового места."
         ></button>
+      </div>
+    </div>
+    <div class="popup page__popup popup_type_image">
+      <div class="popup__container popup__container_type_image">
+        <!-- значения должны браться из карточки, на которую нажали -->
+        <figure class="popup__figure">
+          <img src="#" class="popup__image" />
+          <figcaption class="popup__caption"></figcaption>
+          <button
+            class="button popup__btn popup__btn_action_close"
+            type="button"
+            aria-label="Закрыть картинку."
+          ></button>
+        </figure>
       </div>
     </div>
 
