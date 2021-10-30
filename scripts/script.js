@@ -16,6 +16,8 @@ const closeBtnNewCard = popupNewCard.querySelector('.popup__btn_action_close');
 const picture = popupImage.querySelector('.popup__image');
 const pictureCaption = popupImage.querySelector('.popup__caption');
 const closeBtnImage = popupImage.querySelector('.popup__btn_action_close');
+const title = popupNewCard.querySelector('.popup__item_el_title');
+const photo = popupNewCard.querySelector('.popup__item_el_link');
 
 const initialCards = [
   { name: 'Мыс Марлера', link: './images/elements/croatia.jpg' },
@@ -35,10 +37,6 @@ function renderCard() {
 renderCard();
 
 function openPopup(popup) {
-  if (popup === popupProfile) {
-    nameInput.value = profileName.textContent;
-    aboutInput.value = profileDescription.textContent;
-  }
   popup.classList.add('popup_opened');
 }
 
@@ -55,8 +53,6 @@ function editProfile(evt) {
 
 function addCard(evt) {
   evt.preventDefault();
-  const title = document.querySelector('.popup__item_el_title');
-  const photo = document.querySelector('.popup__item_el_link');
 
   createCard(title.value, photo.value);
 
@@ -83,7 +79,7 @@ function createCard(cardTitleValue, cardLinkValue) {
     evt.target.classList.toggle('elements__like-btn_active');
   });
 
-  const image = document.querySelector('.elements__image');
+  const image = card.querySelector('.elements__image');
   image.addEventListener('click', () => {
     picture.src = cardLinkValue;
     pictureCaption.textContent = cardTitleValue;
@@ -91,7 +87,11 @@ function createCard(cardTitleValue, cardLinkValue) {
   });
 }
 
-editButton.addEventListener('click', () => openPopup(popupProfile));
+editButton.addEventListener('click', () => {
+  nameInput.value = profileName.textContent;
+  aboutInput.value = profileDescription.textContent;
+  openPopup(popupProfile);
+});
 addButton.addEventListener('click', () => openPopup(popupNewCard));
 closeBtnProfile.addEventListener('click', () => closePopup(popupProfile));
 closeBtnNewCard.addEventListener('click', () => closePopup(popupNewCard));
