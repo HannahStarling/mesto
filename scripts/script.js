@@ -61,13 +61,12 @@ function addCard(evt) {
   closePopup(popupNewCard);
 }
 
-function createCard(cardTitleValue, cardLinkValue) {
+function getCard(cardTitleValue, cardLinkValue) {
   const cardTemplate = document.querySelector('.card-template').content;
   const card = cardTemplate.querySelector('.elements__item').cloneNode(true);
 
   card.querySelector('.elements__title').textContent = cardTitleValue;
   card.querySelector('.elements__image').src = cardLinkValue;
-  cardsContainer.prepend(card);
 
   const deleteButton = card.querySelector('.elements__delete-btn');
   deleteButton.addEventListener('click', function (evt) {
@@ -85,6 +84,12 @@ function createCard(cardTitleValue, cardLinkValue) {
     pictureCaption.textContent = cardTitleValue;
     openPopup(popupImage);
   });
+  return card;
+}
+
+function createCard(cardTitleValue, cardLinkValue) {
+  const card = getCard(cardTitleValue, cardLinkValue);
+  cardsContainer.prepend(card);
 }
 
 editButton.addEventListener('click', () => {
