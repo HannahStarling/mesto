@@ -64,9 +64,11 @@ function addCard(evt) {
 function getCard(cardTitleValue, cardLinkValue) {
   const cardTemplate = document.querySelector('.card-template').content;
   const card = cardTemplate.querySelector('.elements__item').cloneNode(true);
+  const image = card.querySelector('.elements__image');
 
   card.querySelector('.elements__title').textContent = cardTitleValue;
-  card.querySelector('.elements__image').src = cardLinkValue;
+  image.src = cardLinkValue;
+  image.alt = cardTitleValue + '.';
 
   const deleteButton = card.querySelector('.elements__delete-btn');
   deleteButton.addEventListener('click', function (evt) {
@@ -78,7 +80,6 @@ function getCard(cardTitleValue, cardLinkValue) {
     evt.target.classList.toggle('elements__like-btn_active');
   });
 
-  const image = card.querySelector('.elements__image');
   image.addEventListener('click', () => {
     picture.src = cardLinkValue;
     pictureCaption.textContent = cardTitleValue;
