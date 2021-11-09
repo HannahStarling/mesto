@@ -58,29 +58,35 @@
       <!-- POPUP START -->
       <div class="popup page__popup popup_type_edit-profile">
         <div class="popup__container">
-          <form class="popup__form" id="user-form" name="user-form">
+          <form class="popup__form" id="user-form" name="user-form" novalidate>
             <h2 class="popup__title">Редактировать профиль</h2>
             <fieldset class="popup__input-container">
-              <input
-                type="text"
-                class="popup__item popup__item_el_name"
-                id="profile-name"
-                name="profile-name"
-                placeholder="Имя профиля"
-                minlength="1"
-                maxlength="50"
-                required
-              />
-              <input
-                type="text"
-                class="popup__item popup__item_el_description"
-                id="profile-description"
-                name="profile-description"
-                placeholder="Описание профиля"
-                minlength="1"
-                maxlength="280"
-                required
-              />
+              <label class="popup__input-label">
+                <input
+                  type="text"
+                  class="popup__item popup__item_el_name"
+                  id="profile-name"
+                  name="profile-name"
+                  placeholder="Имя профиля"
+                  minlength="2"
+                  maxlength="40"
+                  required
+                />
+                <span class="popup__input-error"></span>
+              </label>
+              <label class="popup__input-label">
+                <input
+                  type="text"
+                  class="popup__item popup__item_el_description"
+                  id="profile-description"
+                  name="profile-description"
+                  placeholder="Описание профиля"
+                  minlength="2"
+                  maxlength="200"
+                  required
+                />
+                <span class="popup__input-error"></span>
+              </label>
             </fieldset>
             <button
               class="button popup__btn popup__btn_action_submit"
@@ -98,29 +104,38 @@
       </div>
       <div class="popup page__popup popup_type_add-card">
         <div class="popup__container">
-          <form class="popup__form" id="element-form" name="element-form">
+          <form
+            class="popup__form"
+            id="element-form"
+            name="element-form"
+            novalidate
+          >
             <h2 class="popup__title">Новое место</h2>
             <fieldset class="popup__input-container">
-              <input
-                type="text"
-                class="popup__item popup__item_el_title"
-                id="element-title"
-                name="element-title"
-                placeholder="Название"
-                minlength="1"
-                maxlength="280"
-                required
-              />
-              <input
-                type="text"
-                class="popup__item popup__item_el_link"
-                id="element-link"
-                name="element-link"
-                placeholder="Ссылка на картинку"
-                minlength="1"
-                maxlength="280"
-                required
-              />
+              <label class="popup__input-label">
+                <input
+                  type="text"
+                  class="popup__item popup__item_el_title"
+                  id="element-title"
+                  name="element-title"
+                  placeholder="Название"
+                  minlength="2"
+                  maxlength="30"
+                  required
+                />
+                <span class="popup__input-error"></span>
+              </label>
+              <label class="popup__input-label">
+                <input
+                  type="url"
+                  class="popup__item popup__item_el_link"
+                  id="element-link"
+                  name="element-link"
+                  placeholder="Ссылка на картинку"
+                  required
+                />
+                <span class="popup__input-error"></span>
+              </label>
             </fieldset>
             <button
               class="button popup__btn popup__btn_action_submit"
