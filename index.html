@@ -58,42 +58,46 @@
       <!-- POPUP START -->
       <div class="popup page__popup popup_type_edit-profile">
         <div class="popup__container">
-          <form class="popup__form" id="user-form" name="user-form" novalidate>
+          <form class="popup__form" id="user" name="user" novalidate>
             <h2 class="popup__title">Редактировать профиль</h2>
             <fieldset class="popup__input-container">
               <label class="popup__input-label">
                 <input
                   type="text"
                   class="popup__item popup__item_el_name"
-                  id="profile-name"
-                  name="profile-name"
+                  id="name"
+                  name="name"
                   placeholder="Имя профиля"
                   minlength="2"
                   maxlength="40"
                   required
                 />
-                <span class="popup__input-error"></span>
+                <span
+                  class="popup__input-error popup__input-error_type_name"
+                ></span>
               </label>
               <label class="popup__input-label">
                 <input
                   type="text"
                   class="popup__item popup__item_el_description"
-                  id="profile-description"
-                  name="profile-description"
+                  id="description"
+                  name="description"
                   placeholder="Описание профиля"
                   minlength="2"
                   maxlength="200"
                   required
                 />
-                <span class="popup__input-error"></span>
+                <span
+                  class="popup__input-error popup__input-error_type_description"
+                ></span>
               </label>
+              <button
+                class="button popup__btn popup__btn_action_submit"
+                type="submit"
+              >
+                Сохранить
+              </button>
             </fieldset>
-            <button
-              class="button popup__btn popup__btn_action_submit"
-              type="submit"
-            >
-              Сохранить
-            </button>
           </form>
           <button
             class="button popup__btn popup__btn_action_close"
@@ -104,45 +108,44 @@
       </div>
       <div class="popup page__popup popup_type_add-card">
         <div class="popup__container">
-          <form
-            class="popup__form"
-            id="element-form"
-            name="element-form"
-            novalidate
-          >
+          <form class="popup__form" id="card" name="card" novalidate>
             <h2 class="popup__title">Новое место</h2>
             <fieldset class="popup__input-container">
               <label class="popup__input-label">
                 <input
                   type="text"
                   class="popup__item popup__item_el_title"
-                  id="element-title"
-                  name="element-title"
+                  id="title"
+                  name="title"
                   placeholder="Название"
                   minlength="2"
                   maxlength="30"
                   required
                 />
-                <span class="popup__input-error"></span>
+                <span
+                  class="popup__input-error popup__input-error_type_title"
+                ></span>
               </label>
               <label class="popup__input-label">
                 <input
                   type="url"
                   class="popup__item popup__item_el_link"
-                  id="element-link"
-                  name="element-link"
+                  id="link"
+                  name="link"
                   placeholder="Ссылка на картинку"
                   required
                 />
-                <span class="popup__input-error"></span>
+                <span
+                  class="popup__input-error popup__input-error_type_link"
+                ></span>
               </label>
+              <button
+                class="button popup__btn popup__btn_action_submit"
+                type="submit"
+              >
+                Создать
+              </button>
             </fieldset>
-            <button
-              class="button popup__btn popup__btn_action_submit"
-              type="submit"
-            >
-              Создать
-            </button>
           </form>
           <button
             class="button popup__btn popup__btn_action_close"
@@ -185,6 +188,7 @@
           aria-label="Удалить карточку."
         ></button></li
     ></template>
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/script.js"></script>
   </body>
 </html>
