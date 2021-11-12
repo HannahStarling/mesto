@@ -93,14 +93,43 @@ function createCard(cardTitleValue, cardLinkValue) {
   cardsContainer.prepend(card);
 }
 
+function resetForm(form) {
+  const inputs = [...form.querySelectorAll(settings.inputSelector)];
+  inputs.forEach((input) => {
+    input.classList.remove(settings.inputErrorClass);
+    const error = searchInputError(form, input);
+    error.classList.remove(settings.errorClass);
+  });
+  form.reset();
+}
+
 editButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
   aboutInput.value = profileDescription.textContent;
   openPopup(popupProfile);
 });
-addButton.addEventListener('click', () => openPopup(popupNewCard));
-closeBtnProfile.addEventListener('click', () => closePopup(popupProfile));
-closeBtnNewCard.addEventListener('click', () => closePopup(popupNewCard));
+
+addButton.addEventListener('click', () => {
+  toggleButton(
+    newCardForm,
+    settings.submitButtonSelector,
+    settings.inactiveButtonClass
+  );
+  openPopup(popupNewCard);
+});
+
+closeBtnProfile.addEventListener('click', () => {
+  const form = document.forms.user;
+  closePopup(popupProfile);
+  resetForm(form);
+});
+
+closeBtnNewCard.addEventListener('click', () => {
+  const form = document.forms.card;
+  closePopup(popupNewCard);
+  resetForm(form);
+});
+
 closeBtnImage.addEventListener('click', () => closePopup(popupImage));
 profileForm.addEventListener('submit', editProfile);
 newCardForm.addEventListener('submit', addCard);
