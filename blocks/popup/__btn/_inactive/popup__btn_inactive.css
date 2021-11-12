@@ -5,4 +5,9 @@
   border-radius: 2px;
   background-color: #ffffff;
   color: #000;
+  cursor: auto;
+}
+
+.popup__btn_inactive:hover {
+  opacity: 0.2;
 }
