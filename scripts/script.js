@@ -18,7 +18,7 @@ const pictureCaption = popupImage.querySelector('.popup__caption');
 const closeBtnImage = popupImage.querySelector('.popup__btn_action_close');
 const title = popupNewCard.querySelector('.popup__item_el_title');
 const photo = popupNewCard.querySelector('.popup__item_el_link');
-
+const popups = [...document.querySelectorAll('.popup')];
 const initialCards = [
   { name: 'Мыс Марлера', link: './images/elements/croatia.jpg' },
   { name: 'Лекко', link: './images/elements/lecco.jpg' },
@@ -38,10 +38,20 @@ renderCard();
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  window.addEventListener('keydown', closePopupOnEsc);
+}
+
+//close popup on Escape
+function closePopupOnEsc(e) {
+  if (e.key === 'Escape') {
+    const popup = document.querySelector('.popup_opened');
+    closePopup(popup);
+  }
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  window.removeEventListener('keydown', closePopupOnEsc);
 }
 
 function editProfile(evt) {
