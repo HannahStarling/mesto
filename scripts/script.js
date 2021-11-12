@@ -49,6 +49,15 @@ function closePopupOnEsc(e) {
   }
 }
 
+//close popup on overlay
+function closePopupOnOverlay(evt) {
+  const popup = document.querySelector('.popup_opened');
+  if (evt.target !== evt.currentTarget) {
+    return;
+  }
+  closePopup(popup);
+}
+
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   window.removeEventListener('keydown', closePopupOnEsc);
@@ -142,4 +151,5 @@ closeBtnNewCard.addEventListener('click', () => {
 
 closeBtnImage.addEventListener('click', () => closePopup(popupImage));
 profileForm.addEventListener('submit', editProfile);
+popups.forEach((popup) => popup.addEventListener('click', closePopupOnOverlay));
 newCardForm.addEventListener('submit', addCard);
