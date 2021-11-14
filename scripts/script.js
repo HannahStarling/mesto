@@ -109,6 +109,7 @@ function addCard(evt) {
 
   createCard(title.value, photo.value);
   newCardForm.reset();
+  toggleButton(newCardForm, settings);
   closePopup(popupNewCard);
 }
 
