@@ -7,43 +7,12 @@ const settings = {
   errorClass: 'popup__input-error_active',
 };
 
-enableValidation(settings);
-
-function enableValidation({ formSelector, ...args }) {
-  const forms = Array.from(document.querySelectorAll(formSelector));
-
-  forms.forEach((form) => {
-    form.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
-    setEventListeners(form, args);
-  });
+function searchInputError(form, input) {
+  return form.querySelector(`.popup__input-error_type_${input.id}`);
 }
 
-function setEventListeners(
-  form,
-  { inputSelector, submitButtonSelector, inactiveButtonClass, ...args }
-) {
-  const inputs = Array.from(form.querySelectorAll(inputSelector));
-
-  inputs.forEach((input) => {
-    input.addEventListener('input', function (evt) {
-      const errorMessage = input.validationMessage;
-      handleInputError(form, input, errorMessage, args);
-      toggleButton(form, submitButtonSelector, inactiveButtonClass);
-    });
-  });
-}
-
-function toggleButton(form, submitButtonSelector, inactiveButtonClass) {
-  const button = form.querySelector(submitButtonSelector);
-
-  button.disabled = isInvalid(form);
-  button.classList.toggle(inactiveButtonClass, isInvalid(form));
-}
-
-function isInvalid(form) {
-  return !form.checkValidity();
+function checkInputValidity(input) {
+  return !input.validity.valid;
 }
 
 function handleInputError(
@@ -58,10 +27,46 @@ function handleInputError(
   error.textContent = errorMessage;
 }
 
-function checkInputValidity(input) {
-  return !input.validity.valid;
+function isInvalid(form) {
+  return !form.checkValidity();
 }
 
-function searchInputError(form, input) {
-  return form.querySelector(`.popup__input-error_type_${input.id}`);
+function toggleButton(form, { submitButtonSelector, inactiveButtonClass }) {
+  const button = form.querySelector(submitButtonSelector);
+
+  button.disabled = isInvalid(form);
+  button.classList.toggle(inactiveButtonClass, isInvalid(form));
 }
+
+const resetError = (form, { inputSelector, inputErrorClass, errorClass }) => {
+  const inputs = Array.from(form.querySelectorAll(inputSelector));
+  inputs.forEach((input) => {
+    if (input.matches('.' + inputErrorClass)) {
+      input.classList.remove(inputErrorClass);
+      const error = searchInputError(form, input);
+      error.classList.remove(errorClass);
+    }
+  });
+};
+
+function setEventListeners(form, { inputSelector, ...settings }) {
+  const inputs = Array.from(form.querySelectorAll(inputSelector));
+  toggleButton(form, settings);
+  inputs.forEach((input) => {
+    input.addEventListener('input', function (evt) {
+      const errorMessage = input.validationMessage;
+      handleInputError(form, input, errorMessage, settings);
+      toggleButton(form, settings);
+    });
+  });
+}
+
+function enableValidation({ formSelector, ...settings }) {
+  const forms = Array.from(document.querySelectorAll(formSelector));
+
+  forms.forEach((form) => {
+    setEventListeners(form, settings);
+  });
+}
+
+enableValidation(settings);
