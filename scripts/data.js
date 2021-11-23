@@ -20,6 +20,15 @@ const title = popupNewCard.querySelector('.popup__item_el_title');
 const photo = popupNewCard.querySelector('.popup__item_el_link');
 const popups = [...document.querySelectorAll('.popup')];
 
+const settings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__item',
+  submitButtonSelector: '.popup__btn_action_submit',
+  inactiveButtonClass: 'popup__btn_inactive',
+  inputErrorClass: 'popup__item_type_error',
+  errorClass: 'popup__input-error_active',
+};
+
 const initialCards = [
   { name: 'Мыс Марлера', link: './images/elements/croatia.jpg' },
   { name: 'Лекко', link: './images/elements/lecco.jpg' },
