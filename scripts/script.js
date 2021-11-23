@@ -1,3 +1,28 @@
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+import {
+  popupProfile,
+  popupNewCard,
+  popupImage,
+  cardsContainer,
+  profileForm,
+  newCardForm,
+  nameInput,
+  aboutInput,
+  profileName,
+  profileDescription,
+  editButton,
+  addButton,
+  closeBtnProfile,
+  closeBtnNewCard,
+  closeBtnImage,
+  title,
+  photo,
+  popups,
+  settings,
+  initialCards,
+} from './data.js';
+
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   window.removeEventListener('keydown', closePopupOnEsc);

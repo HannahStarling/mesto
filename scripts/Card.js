@@ -1,8 +1,12 @@
+import { popupImage, picture, pictureCaption } from './data.js';
+
 class Card {
   constructor(data, cardSelector) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+
+    this._image = this._card.querySelector('.elements__image');
   }
 
   _getTemplate() {
@@ -41,18 +45,16 @@ class Card {
     this._card
       .querySelector('.elements__delete-btn')
       .addEventListener('click', this._deleteCard);
-    this._card
-      .querySelector('.elements__image')
-      .addEventListener('click', this._openImagePopup);
+    this._image.addEventListener('click', this._openImagePopup);
   }
 
   createCard() {
     this._card = this._getTemplate();
     this._setEventListeners();
-    //const _image = this._card.querySelector('.elements__image');
+
     this._card.querySelector('.elements__title').textContent = this._name;
-    this._card.querySelector('.elements__image').src = this._link;
-    this._card.querySelector('.elements__image').alt = this._name;
+    this._image.src = this._link;
+    this._image.alt = this._name;
 
     return this._card;
   }
