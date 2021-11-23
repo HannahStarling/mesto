@@ -53,21 +53,22 @@ function addCard(evt) {
 
   renderCard(data);
   newCardForm.reset();
-  toggleButton(newCardForm, settings);
   closePopup(popupNewCard);
 }
 
 editButton.addEventListener('click', () => {
+  const Validator = new FormValidator(settings, profileForm);
+  Validator.enableValidation();
   nameInput.value = profileName.textContent;
   aboutInput.value = profileDescription.textContent;
-  //кнопка редактирования при открытии всегда валидна
-  toggleButton(profileForm, settings);
-  resetError(profileForm, settings);
+  Validator.resetError();
   openPopup(popupProfile);
 });
 
 addButton.addEventListener('click', () => {
-  resetError(newCardForm, settings);
+  const Validator = new FormValidator(settings, newCardForm);
+  Validator.enableValidation();
+  Validator.resetError();
   openPopup(popupNewCard);
 });
 
