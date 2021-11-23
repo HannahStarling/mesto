@@ -67,8 +67,10 @@ function createCard(cardTitleValue, cardLinkValue) {
 }
 
 function renderCard() {
-  initialCards.forEach((item) => {
-    createCard(item.name, item.link);
+  initialCards.forEach((initialCard) => {
+    const card = new Card(initialCard, '.card-template').createCard();
+
+    cardsContainer.prepend(card);
   });
 }
 
