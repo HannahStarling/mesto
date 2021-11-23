@@ -37,19 +37,13 @@ class Card {
   _setEventListeners() {
     this._card
       .querySelector('.elements__like-btn')
-      .addEventListener('click', () => {
-        this.__likeCard();
-      });
+      .addEventListener('click', this._likeCard);
     this._card
       .querySelector('.elements__delete-btn')
-      .addEventListener('click', () => {
-        this._deleteCard();
-      });
+      .addEventListener('click', this._deleteCard);
     this._card
       .querySelector('.elements__image')
-      .addEventListener('click', () => {
-        this._openImagePopup();
-      });
+      .addEventListener('click', this._openImagePopup);
   }
 
   createCard() {
