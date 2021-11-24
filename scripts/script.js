@@ -24,6 +24,9 @@ import {
   initialCards,
 } from './data.js';
 
+const profileFormValidator = new FormValidator(settings, profileForm);
+const newCardFormValidator = new FormValidator(settings, newCardForm);
+
 function editProfile(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
@@ -54,18 +57,16 @@ function addCard(evt) {
 }
 
 editButton.addEventListener('click', () => {
-  const Validator = new FormValidator(settings, profileForm);
-  Validator.enableValidation();
+  profileFormValidator.enableValidation();
   nameInput.value = profileName.textContent;
   aboutInput.value = profileDescription.textContent;
-  Validator.resetError();
+  profileFormValidator.resetError();
   openPopup(popupProfile);
 });
 
 addButton.addEventListener('click', () => {
-  const Validator = new FormValidator(settings, newCardForm);
-  Validator.enableValidation();
-  Validator.resetError();
+  newCardFormValidator.enableValidation();
+  newCardFormValidator.resetError();
   openPopup(popupNewCard);
 });
 
