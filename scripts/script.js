@@ -26,6 +26,8 @@ import {
 
 const profileFormValidator = new FormValidator(settings, profileForm);
 const newCardFormValidator = new FormValidator(settings, newCardForm);
+newCardFormValidator.enableValidation();
+profileFormValidator.enableValidation();
 
 function editProfile(evt) {
   evt.preventDefault();
@@ -57,7 +59,6 @@ function addCard(evt) {
 }
 
 editButton.addEventListener('click', () => {
-  profileFormValidator.enableValidation();
   nameInput.value = profileName.textContent;
   aboutInput.value = profileDescription.textContent;
   profileFormValidator.resetError();
@@ -65,7 +66,6 @@ editButton.addEventListener('click', () => {
 });
 
 addButton.addEventListener('click', () => {
-  newCardFormValidator.enableValidation();
   newCardFormValidator.resetError();
   openPopup(popupNewCard);
 });
