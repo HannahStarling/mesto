@@ -26,3 +26,5 @@ function closePopupOnOverlay(evt) {
   closePopup(popup);
   if (form !== null) form.reset();
 }
+
+export { openPopup, closePopup, closePopupOnEsc, closePopupOnOverlay };

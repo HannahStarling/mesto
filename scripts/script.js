@@ -1,5 +1,6 @@
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
+import { openPopup, closePopup, closePopupOnOverlay } from './utils.js';
 import {
   popupProfile,
   popupNewCard,
@@ -22,35 +23,6 @@ import {
   settings,
   initialCards,
 } from './data.js';
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  window.removeEventListener('keydown', closePopupOnEsc);
-}
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  window.addEventListener('keydown', closePopupOnEsc);
-}
-
-function closePopupOnEsc(evt) {
-  if (evt.key === 'Escape') {
-    const popup = document.querySelector('.popup_opened');
-    const form = popup.querySelector('.popup__form');
-    closePopup(popup);
-    if (form !== null) form.reset();
-  }
-}
-
-function closePopupOnOverlay(evt) {
-  const popup = evt.target;
-  const form = popup.querySelector('.popup__form');
-  if (popup !== evt.currentTarget) {
-    return;
-  }
-  closePopup(popup);
-  if (form !== null) form.reset();
-}
 
 function editProfile(evt) {
   evt.preventDefault();
