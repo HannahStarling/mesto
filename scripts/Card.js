@@ -6,8 +6,6 @@ export class Card {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
-
-    this._image = this._card.querySelector('.elements__image');
   }
 
   _getTemplate() {
@@ -24,6 +22,7 @@ export class Card {
       .querySelector('.elements__delete-btn')
       .closest('.elements__item')
       .remove();
+    this._card = null;
   }
 
   _likeCard() {
@@ -42,11 +41,19 @@ export class Card {
   _setEventListeners() {
     this._card
       .querySelector('.elements__like-btn')
-      .addEventListener('click', this._likeCard);
+      .addEventListener('click', () => {
+        this._likeCard();
+      });
     this._card
       .querySelector('.elements__delete-btn')
-      .addEventListener('click', this._deleteCard);
-    this._image.addEventListener('click', this._openImagePopup);
+      .addEventListener('click', () => {
+        this._deleteCard();
+      });
+    this._card
+      .querySelector('.elements__image')
+      .addEventListener('click', () => {
+        this._openImagePopup();
+      });
   }
 
   createCard() {
@@ -54,8 +61,8 @@ export class Card {
     this._setEventListeners();
 
     this._card.querySelector('.elements__title').textContent = this._name;
-    this._image.src = this._link;
-    this._image.alt = this._name;
+    this._card.querySelector('.elements__image').src = this._link;
+    this._card.querySelector('.elements__image').alt = this._name;
 
     return this._card;
   }
