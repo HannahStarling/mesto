@@ -1,6 +1,6 @@
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
-import Popup from './Popup.js';
+import PopupWithForm from './PopupWithForm.js';
 import {
   // popupProfile,
   // popupNewCard,
@@ -54,12 +54,11 @@ function addCard(evt) {
   };
 
   renderCard(data);
-  newCardForm.reset();
   popupNewCard.close();
 }
 
 // const popupProfile = document.querySelector('.popup_type_edit-profile');
-const popupProfile = new Popup('.popup_type_edit-profile');
+const popupProfile = new PopupWithForm('.popup_type_edit-profile', editProfile);
 popupProfile.setEventListeners();
 editButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
@@ -69,14 +68,9 @@ editButton.addEventListener('click', () => {
 });
 
 // const popupNewCard = document.querySelector('.popup_type_add-card');
-const popupNewCard = new Popup('.popup_type_add-card');
+const popupNewCard = new PopupWithForm('.popup_type_add-card', addCard);
 popupNewCard.setEventListeners();
 addButton.addEventListener('click', () => {
   newCardFormValidator.resetError();
   popupNewCard.open();
 });
-
-//closeBtnImage.addEventListener('click', () => closePopup(popupImage));
-
-profileForm.addEventListener('submit', editProfile);
-newCardForm.addEventListener('submit', addCard);
