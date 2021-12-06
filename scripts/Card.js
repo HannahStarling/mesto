@@ -1,6 +1,5 @@
-import { popupImage, picture, pictureCaption } from './data.js';
-import { openPopup } from './utils.js';
-
+/* import { popupImage, picture, pictureCaption } from './data.js';
+ */
 export class Card {
   constructor({ name, link }, cardSelector) {
     this._name = name;
@@ -26,12 +25,12 @@ export class Card {
     e.target.classList.toggle('elements__like-btn_active');
   }
 
-  _openImagePopup() {
+  /*  _openImagePopup() {
     pictureCaption.textContent = this._name;
     picture.src = this._link;
     picture.alt = this._name;
     openPopup(popupImage);
-  }
+  } */
 
   _setEventListeners() {
     this._image = this._card.querySelector('.elements__image');
@@ -45,9 +44,9 @@ export class Card {
       .addEventListener('click', () => {
         this._deleteCard();
       });
-    this._image.addEventListener('click', () => {
+    /* this._image.addEventListener('click', () => {
       this._openImagePopup();
-    });
+    }); */
   }
 
   createCard() {

@@ -1,10 +1,10 @@
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
-import { openPopup, closePopup, closePopupOnOverlay } from './utils.js';
+import Popup from './Popup.js';
 import {
-  popupProfile,
-  popupNewCard,
-  popupImage,
+  // popupProfile,
+  // popupNewCard,
+  // popupImage,
   cardsContainer,
   profileForm,
   newCardForm,
@@ -33,7 +33,7 @@ function editProfile(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDescription.textContent = aboutInput.value;
-  closePopup(popupProfile);
+  popupProfile.close();
 }
 
 function renderCard(data) {
@@ -55,31 +55,28 @@ function addCard(evt) {
 
   renderCard(data);
   newCardForm.reset();
-  closePopup(popupNewCard);
+  popupNewCard.close();
 }
 
+// const popupProfile = document.querySelector('.popup_type_edit-profile');
+const popupProfile = new Popup('.popup_type_edit-profile');
+popupProfile.setEventListeners();
 editButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
   aboutInput.value = profileDescription.textContent;
   profileFormValidator.resetError();
-  openPopup(popupProfile);
+  popupProfile.open();
 });
 
+// const popupNewCard = document.querySelector('.popup_type_add-card');
+const popupNewCard = new Popup('.popup_type_add-card');
+popupNewCard.setEventListeners();
 addButton.addEventListener('click', () => {
   newCardFormValidator.resetError();
-  openPopup(popupNewCard);
+  popupNewCard.open();
 });
 
-closeBtnProfile.addEventListener('click', () => {
-  closePopup(popupProfile);
-  profileForm.reset();
-});
+//closeBtnImage.addEventListener('click', () => closePopup(popupImage));
 
-closeBtnNewCard.addEventListener('click', () => {
-  closePopup(popupNewCard);
-  newCardForm.reset();
-});
-closeBtnImage.addEventListener('click', () => closePopup(popupImage));
-popups.forEach((popup) => popup.addEventListener('click', closePopupOnOverlay));
 profileForm.addEventListener('submit', editProfile);
 newCardForm.addEventListener('submit', addCard);
