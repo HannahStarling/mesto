@@ -1,4 +1,5 @@
 import { Card } from './Card.js';
+import Section from './Section.js';
 import { FormValidator } from './FormValidator.js';
 import PopupWithForm from './PopupWithForm.js';
 import {
@@ -14,16 +15,17 @@ import {
   profileDescription,
   editButton,
   addButton,
-  closeBtnProfile,
-  closeBtnNewCard,
-  closeBtnImage,
+  // closeBtnProfile,
+  // closeBtnNewCard,
+  // closeBtnImage,
   title,
   photo,
-  popups,
+  // popups,
   settings,
   initialCards,
 } from './data.js';
 
+// validation
 const profileFormValidator = new FormValidator(settings, profileForm);
 const newCardFormValidator = new FormValidator(settings, newCardForm);
 newCardFormValidator.enableValidation();
@@ -36,15 +38,26 @@ function editProfile(evt) {
   popupProfile.close();
 }
 
-function renderCard(data) {
-  const card = new Card(data, '.card-template').createCard();
+const cardSection = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = new Card(item, '.card-template').createCard();
+      cardSection.addItem(card);
+    },
+  },
+  '.elements__list'
+);
+cardSection.render();
+// function renderCard(data) {
+//   const card = new Card(data, '.card-template').createCard();
 
-  cardsContainer.prepend(card);
-}
+//   cardsContainer.prepend(card);
+// }
 
-initialCards.forEach((initialCard) => {
-  renderCard(initialCard);
-});
+// initialCards.forEach((initialCard) => {
+//   renderCard(initialCard);
+// });
 
 function addCard(evt) {
   evt.preventDefault();
