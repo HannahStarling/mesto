@@ -6,13 +6,13 @@ import {
   // popupProfile,
   // popupNewCard,
   // popupImage,
-  cardsContainer,
+  //cardsContainer,
   profileForm,
   newCardForm,
   nameInput,
   aboutInput,
-  profileName,
-  profileDescription,
+  // profileName,
+  // profileDescription,
   editButton,
   addButton,
   // closeBtnProfile,
@@ -25,18 +25,19 @@ import {
   initialCards,
 } from './data.js';
 
+import UserInfo from './UserInfo.js';
+
 // validation
 const profileFormValidator = new FormValidator(settings, profileForm);
 const newCardFormValidator = new FormValidator(settings, newCardForm);
 newCardFormValidator.enableValidation();
 profileFormValidator.enableValidation();
-
-function editProfile(evt) {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileDescription.textContent = aboutInput.value;
-  popupProfile.close();
-}
+// const profileName = profile.querySelector('.profile__name');
+// const profileDescription = profile.querySelector('.profile__description');
+const userInfo = new UserInfo({
+  name: '.profile__name',
+  info: '.profile__description',
+});
 
 const cardSection = new Section(
   {
@@ -49,15 +50,6 @@ const cardSection = new Section(
   '.elements__list'
 );
 cardSection.render();
-// function renderCard(data) {
-//   const card = new Card(data, '.card-template').createCard();
-
-//   cardsContainer.prepend(card);
-// }
-
-// initialCards.forEach((initialCard) => {
-//   renderCard(initialCard);
-// });
 
 function addCard(evt) {
   evt.preventDefault();
@@ -71,11 +63,18 @@ function addCard(evt) {
 }
 
 // const popupProfile = document.querySelector('.popup_type_edit-profile');
+function editProfile(evt) {
+  evt.preventDefault();
+  userInfo.setUserInfo(nameInput, aboutInput);
+  popupProfile.close();
+}
+
 const popupProfile = new PopupWithForm('.popup_type_edit-profile', editProfile);
 popupProfile.setEventListeners();
 editButton.addEventListener('click', () => {
-  nameInput.value = profileName.textContent;
-  aboutInput.value = profileDescription.textContent;
+  const { name, info } = userInfo.getUserInfo();
+  nameInput.value = name;
+  aboutInput.value = info;
   profileFormValidator.resetError();
   popupProfile.open();
 });
