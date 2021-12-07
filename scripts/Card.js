@@ -1,6 +1,4 @@
-//Преобразуйте класс Card
 export default class Card {
-  //Свяжите класс Card c попапом. Сделайте так, чтобы Card принимал в конструктор функцию handleCardClick.
   constructor({ title, link }, cardSelector, handleCardClick) {
     this._title = title;
     this._link = link;
@@ -38,7 +36,6 @@ export default class Card {
       .addEventListener('click', () => {
         this._deleteCard();
       });
-    //handleCardClick должна открывать попап с картинкой при клике на карточку.
     this._image.addEventListener('click', () => {
       this._handleCardClick();
     });
