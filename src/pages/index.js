@@ -1,9 +1,9 @@
-import Card from './components/Card.js';
-import Section from './components/Section.js';
-import UserInfo from './components/UserInfo.js';
-import FormValidator from './components/FormValidator.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import PopupWithImage from './components/PopupWithImage.js';
+import Card from '../scripts/components/Card.js';
+import Section from '../scripts/components/Section.js';
+import UserInfo from '../scripts/components/UserInfo.js';
+import FormValidator from '../scripts/components/FormValidator.js';
+import PopupWithForm from '../scripts/components/PopupWithForm.js';
+import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import {
   profileForm,
   newCardForm,
@@ -14,7 +14,7 @@ import {
   selectors,
   settings,
   initialCards,
-} from './utils/data.js';
+} from '../scripts/utils/data.js';
 
 const renderCard = (data) => {
   const card = new Card(data, selectors, () => {
