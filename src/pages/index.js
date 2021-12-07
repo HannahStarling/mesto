@@ -73,11 +73,13 @@ editButton.addEventListener('click', () => {
   const { name, info } = userInfo.getUserInfo();
   nameInput.value = name;
   aboutInput.value = info;
+  profileFormValidator.disableButton();
   profileFormValidator.resetError();
   popupProfile.open();
 });
 
 addButton.addEventListener('click', () => {
   newCardFormValidator.resetError();
+  newCardFormValidator.disableButton();
   popupNewCard.open();
 });
