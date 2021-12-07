@@ -1,5 +1,5 @@
 //Преобразуйте класс Card
-export class Card {
+export default class Card {
   //Свяжите класс Card c попапом. Сделайте так, чтобы Card принимал в конструктор функцию handleCardClick.
   constructor({ title, link }, cardSelector, handleCardClick) {
     this._title = title;

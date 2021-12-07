@@ -1,8 +1,8 @@
 //сделать дефолтные импорты
 //импорты из папок компонентов и пр.
-import { Card } from './Card.js';
+import Card from './Card.js';
 import Section from './Section.js';
-import { FormValidator } from './FormValidator.js';
+import FormValidator from './FormValidator.js';
 import PopupWithForm from './PopupWithForm.js';
 import PopupWithImage from './PopupWithImage.js';
 import {
