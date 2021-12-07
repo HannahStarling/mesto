@@ -1,3 +1,4 @@
+//почистить
 const popupProfile = document.querySelector('.popup_type_edit-profile');
 const popupNewCard = document.querySelector('.popup_type_add-card');
 const popupImage = document.querySelector('.popup_type_image');
@@ -20,6 +21,8 @@ const title = popupNewCard.querySelector('.popup__item_el_title');
 const photo = popupNewCard.querySelector('.popup__item_el_link');
 const popups = [...document.querySelectorAll('.popup')];
 
+//объект с селекторами?
+
 const settings = {
   formSelector: '.popup__form',
   inputSelector: '.popup__item',
@@ -30,12 +33,12 @@ const settings = {
 };
 
 const initialCards = [
-  { name: 'Мыс Марлера', link: './images/elements/croatia.jpg' },
-  { name: 'Лекко', link: './images/elements/lecco.jpg' },
-  { name: 'Москва', link: './images/elements/moscow.jpg' },
-  { name: 'Пиза', link: './images/elements/pisa.jpg' },
-  { name: 'Ватикан', link: './images/elements/roma.jpg' },
-  { name: 'Венеция', link: './images/elements/venezia.jpg' },
+  { title: 'Мыс Марлера', link: './images/elements/croatia.jpg' },
+  { title: 'Лекко', link: './images/elements/lecco.jpg' },
+  { title: 'Москва', link: './images/elements/moscow.jpg' },
+  { title: 'Пиза', link: './images/elements/pisa.jpg' },
+  { title: 'Ватикан', link: './images/elements/roma.jpg' },
+  { title: 'Венеция', link: './images/elements/venezia.jpg' },
 ];
 
 export {

@@ -42,16 +42,21 @@ const userInfo = new UserInfo({
   info: '.profile__description',
 });
 
+const renderCard = (data) => {
+  const card = new Card(data, '.card-template', () => {
+    const popupWithImage = new PopupWithImage('.popup_type_image', data);
+    popupWithImage.open();
+    popupWithImage.setEventListeners();
+  }).createCard();
+  return card;
+};
+
 //const popupImage = document.querySelector('.popup_type_image');
 const cardSection = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = new Card(item, '.card-template', () => {
-        const popupWithImage = new PopupWithImage('.popup_type_image', item);
-        popupWithImage.open();
-        popupWithImage.setEventListeners();
-      }).createCard();
+      const card = renderCard(item);
       cardSection.addItem(card);
     },
   },
@@ -60,27 +65,21 @@ const cardSection = new Section(
 
 cardSection.render();
 
-function addCard(evt) {
-  evt.preventDefault();
-  const data = {
-    name: title.value,
-    link: photo.value,
-  };
-
-  renderCard(data);
-  popupNewCard.close();
-}
-
 // const popupProfile = document.querySelector('.popup_type_edit-profile');
-function editProfile(evt) {
-  evt.preventDefault();
-  userInfo.setUserInfo(nameInput, aboutInput);
-  popupProfile.close();
-}
 
-const popupProfile = new PopupWithForm('.popup_type_edit-profile', editProfile);
+const popupProfile = new PopupWithForm('.popup_type_edit-profile', () => {
+  userInfo.setUserInfo(nameInput, aboutInput);
+});
+// const popupNewCard = document.querySelector('.popup_type_add-card');
+const popupNewCard = new PopupWithForm('.popup_type_add-card', (data) => {
+  const card = renderCard(data);
+  cardSection.addItem(card);
+});
+
 popupProfile.setEventListeners();
-editButton.addEventListener('click', () => {
+popupNewCard.setEventListeners();
+
+editButton.addEventListener('click', (evt) => {
   const { name, info } = userInfo.getUserInfo();
   nameInput.value = name;
   aboutInput.value = info;
@@ -88,9 +87,6 @@ editButton.addEventListener('click', () => {
   popupProfile.open();
 });
 
-// const popupNewCard = document.querySelector('.popup_type_add-card');
-const popupNewCard = new PopupWithForm('.popup_type_add-card', addCard);
-popupNewCard.setEventListeners();
 addButton.addEventListener('click', () => {
   newCardFormValidator.resetError();
   popupNewCard.open();

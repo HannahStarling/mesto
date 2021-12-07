@@ -13,13 +13,18 @@ export default class PopupWithForm extends Popup {
   //но и добавлять обработчик сабмита формы.
   setEventListeners() {
     super.setEventListeners();
-    this._form.addEventListener('submit', (evt) => this._submitHandler(evt));
+    this._form.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      this._submitHandler(this._getInputValues());
+      this.close();
+    });
   }
   //Перезаписывает родительский метод close, так как при закрытии попапа форма должна ещё и сбрасываться.
   close() {
     super.close();
     this._form.reset();
   }
+
   //Содержит приватный метод _getInputValues, который собирает данные всех полей формы.
   _getInputValues() {
     // создаём пустой объект
