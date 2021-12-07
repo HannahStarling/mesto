@@ -1,7 +1,10 @@
+//сделать дефолтные импорты
+//импорты из папок компонентов и пр.
 import { Card } from './Card.js';
 import Section from './Section.js';
 import { FormValidator } from './FormValidator.js';
 import PopupWithForm from './PopupWithForm.js';
+import PopupWithImage from './PopupWithImage.js';
 import {
   // popupProfile,
   // popupNewCard,
@@ -39,16 +42,22 @@ const userInfo = new UserInfo({
   info: '.profile__description',
 });
 
+//const popupImage = document.querySelector('.popup_type_image');
 const cardSection = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = new Card(item, '.card-template').createCard();
+      const card = new Card(item, '.card-template', () => {
+        const popupWithImage = new PopupWithImage('.popup_type_image', item);
+        popupWithImage.open();
+        popupWithImage.setEventListeners();
+      }).createCard();
       cardSection.addItem(card);
     },
   },
   '.elements__list'
 );
+
 cardSection.render();
 
 function addCard(evt) {

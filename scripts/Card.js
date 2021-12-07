@@ -1,11 +1,20 @@
-/* import { popupImage, picture, pictureCaption } from './data.js';
- */
+//Преобразуйте класс Card
 export class Card {
-  constructor({ name, link }, cardSelector) {
+  //Свяжите класс Card c попапом. Сделайте так, чтобы Card принимал в конструктор функцию handleCardClick.
+  constructor({ name, link }, cardSelector, handleCardClick) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
+
+  //handleCardClick должна открывать попап с картинкой при клике на карточку.
+  /*  _openImagePopup() {
+    pictureCaption.textContent = this._name;
+    picture.src = this._link;
+    picture.alt = this._name;
+    openPopup(popupImage);
+  } */
 
   _getTemplate() {
     const card = document
@@ -25,13 +34,6 @@ export class Card {
     e.target.classList.toggle('elements__like-btn_active');
   }
 
-  /*  _openImagePopup() {
-    pictureCaption.textContent = this._name;
-    picture.src = this._link;
-    picture.alt = this._name;
-    openPopup(popupImage);
-  } */
-
   _setEventListeners() {
     this._image = this._card.querySelector('.elements__image');
     this._card
@@ -44,9 +46,9 @@ export class Card {
       .addEventListener('click', () => {
         this._deleteCard();
       });
-    /* this._image.addEventListener('click', () => {
-      this._openImagePopup();
-    }); */
+    this._image.addEventListener('click', () => {
+      this._handleCardClick();
+    });
   }
 
   createCard() {
