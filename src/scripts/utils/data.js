@@ -25,13 +25,20 @@ const settings = {
   errorClass: 'popup__input-error_active',
 };
 
+import croatiaImage from '../../images/elements/croatia.jpg';
+import leccoImage from '../../images/elements/lecco.jpg';
+import moscowImage from '../../images/elements/moscow.jpg';
+import pisaImage from '../../images/elements/pisa.jpg';
+import romaImage from '../../images/elements/roma.jpg';
+import veneziaImage from '../../images/elements/venezia.jpg';
+
 const initialCards = [
-  { title: 'Мыс Марлера', link: './images/elements/croatia.jpg' },
-  { title: 'Лекко', link: './images/elements/lecco.jpg' },
-  { title: 'Москва', link: './images/elements/moscow.jpg' },
-  { title: 'Пиза', link: './images/elements/pisa.jpg' },
-  { title: 'Ватикан', link: './images/elements/roma.jpg' },
-  { title: 'Венеция', link: './images/elements/venezia.jpg' },
+  { title: 'Мыс Марлера', link: croatiaImage },
+  { title: 'Лекко', link: leccoImage },
+  { title: 'Москва', link: moscowImage },
+  { title: 'Пиза', link: pisaImage },
+  { title: 'Ватикан', link: romaImage },
+  { title: 'Венеция', link: veneziaImage },
 ];
 
 export {
