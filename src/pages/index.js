@@ -19,11 +19,7 @@ import {
 
 const renderCard = (data) => {
   const card = new Card(data, selectors, () => {
-    const popupWithImage = new PopupWithImage(
-      selectors.popupImageSelector,
-      data
-    );
-    popupWithImage.open();
+    popupWithImage.open(data);
     popupWithImage.setEventListeners();
   }).createCard();
   return card;
@@ -64,6 +60,7 @@ const popupNewCard = new PopupWithForm(
     cardSection.addItem(card);
   }
 );
+const popupWithImage = new PopupWithImage(selectors.popupImageSelector);
 
 popupProfile.setEventListeners();
 popupNewCard.setEventListeners();
