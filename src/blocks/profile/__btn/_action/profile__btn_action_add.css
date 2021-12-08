@@ -16,10 +16,3 @@
     width: 100%;
   }
 }
-
-@media all and (max-width: 640px) {
-  .profile__btn_action_add {
-    width: 282px;
-    background-size: 6%;
-  }
-}
