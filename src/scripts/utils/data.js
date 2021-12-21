@@ -33,12 +33,12 @@ import romaImage from '../../images/elements/roma.jpg';
 import veneziaImage from '../../images/elements/venezia.jpg';
 
 const initialCards = [
-  { title: 'Мыс Марлера', link: croatiaImage },
-  { title: 'Лекко', link: leccoImage },
-  { title: 'Москва', link: moscowImage },
-  { title: 'Пиза', link: pisaImage },
-  { title: 'Ватикан', link: romaImage },
-  { title: 'Венеция', link: veneziaImage },
+  { name: 'Мыс Марлера', link: croatiaImage },
+  { name: 'Лекко', link: leccoImage },
+  { name: 'Москва', link: moscowImage },
+  { name: 'Пиза', link: pisaImage },
+  { name: 'Ватикан', link: romaImage },
+  { name: 'Венеция', link: veneziaImage },
 ];
 
 export {

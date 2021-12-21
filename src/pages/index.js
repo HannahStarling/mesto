@@ -1,4 +1,5 @@
 import './index.css';
+import Api from '../scripts/components/Api';
 import Card from '../scripts/components/Card.js';
 import Section from '../scripts/components/Section.js';
 import UserInfo from '../scripts/components/UserInfo.js';
@@ -16,6 +17,14 @@ import {
   settings,
   initialCards,
 } from '../scripts/utils/data.js';
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-33',
+  headers: {
+    authorization: '5c55e35b-36cb-4e1a-9a83-df32a17d9ee6',
+    'Content-Type': 'application/json',
+  },
+});
 
 const renderCard = (data) => {
   const card = new Card(data, selectors, () => {
@@ -36,7 +45,6 @@ const userInfo = new UserInfo(selectors);
 // initial card rendering
 const cardSection = new Section(
   {
-    items: initialCards,
     renderer: (item) => {
       const card = renderCard(item);
       cardSection.addItem(card);
@@ -45,7 +53,15 @@ const cardSection = new Section(
   selectors
 );
 
-cardSection.render();
+api
+  .getInitialCards()
+  .then((data) => {
+    cardSection.render(data);
+  })
+  .catch((err) => {
+    //реализовать логику ошибки через оформление секции другими данными?
+    console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
+  });
 
 // popups
 const popupProfile = new PopupWithForm(selectors.popupProfileSelector, () => {
