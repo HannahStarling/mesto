@@ -25,11 +25,14 @@
       <main class="content page__content">
         <!-- Секция, блок cover profile -->
         <section class="profile content__center">
-          <img
-            src="<%=require('./images/avatar.jpg')%>"
-            alt="Аватар пользователя."
-            class="profile__image"
-          />
+          <div class="profile__avatar">
+            <img
+              src="<%=require('./images/avatar.jpg')%>"
+              alt="Аватар пользователя."
+              class="profile__image"
+            />
+            <button class="button profile__btn_action_avatar"></button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__description">Исследователь океана</p>
@@ -166,22 +169,82 @@
           ></button>
         </div>
       </div>
+      <div class="popup page__popup popup_type_edit-avatar">
+        <div class="popup__container">
+          <form
+            class="popup__form"
+            id="user-avatar"
+            name="user-avatar"
+            novalidate
+          >
+            <h2 class="popup__title">Обновить аватар</h2>
+            <fieldset class="popup__input-container">
+              <label class="popup__input-label">
+                <input
+                  type="url"
+                  class="popup__item popup__item_el_avatar"
+                  id="avatar"
+                  name="avatar"
+                  placeholder="Ссылка на аватар"
+                  required
+                />
+                <span
+                  class="popup__input-error popup__input-error_type_avatar"
+                ></span>
+              </label>
+              <button
+                class="button popup__btn popup__btn_action_submit"
+                type="submit"
+              >
+                Сохранить
+              </button>
+            </fieldset>
+          </form>
+          <button
+            class="button popup__btn popup__btn_action_close"
+            type="button"
+            aria-label="Закрыть форму редактирования аватара."
+          ></button>
+        </div>
+      </div>
+      <div class="popup page__popup popup_type_delete-card">
+        <div class="popup__container">
+          <form class="popup__form" id="confirm" name="confirm" novalidate>
+            <h2 class="popup__title popup__title_type_noinputs">Вы уверены?</h2>
+            <button
+              class="button popup__btn popup__btn_action_submit"
+              type="submit"
+            >
+              Да
+            </button>
+          </form>
+          <button
+            class="button popup__btn popup__btn_action_close"
+            type="button"
+            aria-label="Отменить удаление карточки."
+          ></button>
+        </div>
+      </div>
     </div>
 
     <template class="card-template">
       <li class="elements__item">
         <img class="elements__image" />
-        <h2 class="elements__title"></h2>
-        <button
-          class="button elements__like-btn"
-          type="button"
-          aria-label="Поставить лайк."
-        ></button>
-        <button
-          class="button elements__delete-btn"
-          type="button"
-          aria-label="Удалить карточку."
-        ></button></li
-    ></template>
+        <div class="elements__details-wrapper">
+          <h2 class="elements__title"></h2>
+          <button
+            class="button elements__like-btn"
+            type="button"
+            aria-label="Поставить лайк."
+          ></button>
+          <span class="elements__like-counter">0</span>
+          <button
+            class="button elements__delete-btn"
+            type="button"
+            aria-label="Удалить карточку."
+          ></button>
+        </div>
+      </li>
+    </template>
   </body>
 </html>
