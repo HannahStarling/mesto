@@ -100,13 +100,23 @@ const popupProfile = new PopupWithForm(
 const popupNewCard = new PopupWithForm(
   selectors.popupNewCardSelector,
   (data) => {
-    const card = renderCard(data);
-    cardSection.addItem(card);
+    //const card = renderCard(data);
+    api
+      .postCard(data)
+      .then((card) => {
+        cardSection.addItem(renderCard(card));
+      })
+      .catch((err) => {
+        //реализовать логику ошибки
+        console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
+      });
+    // cardSection.addItem(renderCard(data));
   }
 );
-const popupWithImage = new PopupWithImage(selectors.popupImageSelector);
-popupWithImage.setEventListeners();
 
+const popupWithImage = new PopupWithImage(selectors.popupImageSelector);
+
+popupWithImage.setEventListeners();
 popupProfile.setEventListeners();
 popupNewCard.setEventListeners();
 

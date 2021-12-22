@@ -48,4 +48,22 @@ export default class Api {
       );
     });
   }
+
+  postCard({ name, link }) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        link: link,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(
+        `Произошла ошибка: ${res.status}, попробуйте снова.`
+      );
+    });
+  }
 }
