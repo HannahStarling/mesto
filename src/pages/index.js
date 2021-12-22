@@ -26,12 +26,26 @@ const api = new Api({
   },
 });
 
+const popupConfirmDelete = new PopupWithConfirm(selectors.popupDeleteSelector);
+popupConfirmDelete.setEventListeners();
+
 const renderCard = (data) => {
   const card = new Card(data, selectors, {
     handleCardClick: () => {
       popupWithImage.open(data);
     },
     handleCardDelete: () => {
+      popupConfirmDelete.confirmHandler(() => {
+        api
+          .deleteCard(data)
+          .then(() => {
+            card.deleteCard();
+            popupConfirmDelete.close();
+          })
+          .catch((err) => {
+            console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
+          });
+      });
       popupConfirmDelete.open();
     },
     likeHandler: (e, id) => {
@@ -54,11 +68,9 @@ const renderCard = (data) => {
           console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
         });
     },
-  }).createCard();
-  return card;
+  });
+  return card.createCard();
 };
-
-const popupConfirmDelete = new PopupWithConfirm(selectors.popupDeleteSelector);
 
 // validation
 const profileFormValidator = new FormValidator(settings, profileForm);

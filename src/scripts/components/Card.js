@@ -10,7 +10,7 @@ export default class Card {
     this._id = _id;
 
     this._owner = owner._id;
-    //this._user = user;
+    this._user = user;
 
     this._cardSelector = cardSelector;
 
@@ -29,34 +29,28 @@ export default class Card {
     return card;
   }
 
-  _deleteCard() {
+  deleteCard() {
     this._card.remove();
     this._card = null;
   }
 
-  /*  _likeCard(e) {
-    e.target.classList.toggle('elements__like-btn_active');
-  } */
-
   _setEventListeners() {
     this._image = this._card.querySelector('.elements__image');
     this._counter = this._card.querySelector('.elements__like-counter');
-    this._card
-      .querySelector('.elements__like-btn')
-      .addEventListener('click', (e) => {
-        if (e.target.classList.contains('elements__like-btn_active')) {
-          this._dislikeHandler(e, this._id);
-        } else {
-          this._likeHandler(e, this._id);
-        }
-        this._counter.textContent = this._likes.length;
-      });
-    this._card
-      .querySelector('.elements__delete-btn')
-      .addEventListener('click', () => {
-        this._handleCardDelete();
-        //this._deleteCard();
-      });
+    this._deleteBtn = this._card.querySelector('.elements__delete-btn');
+    this._likeBtn = this._card.querySelector('.elements__like-btn');
+
+    this._likeBtn.addEventListener('click', (e) => {
+      if (e.target.classList.contains('elements__like-btn_active')) {
+        this._dislikeHandler(e, this._id);
+      } else {
+        this._likeHandler(e, this._id);
+      }
+      this._counter.textContent = this._likes.length;
+    });
+    this._deleteBtn.addEventListener('click', () => {
+      this._handleCardDelete();
+    });
     this._image.addEventListener('click', () => {
       this._handleCardClick();
     });
@@ -70,6 +64,10 @@ export default class Card {
     this._image.src = this._link;
     this._image.alt = this._name;
     this._counter.textContent = this._likes.length;
+
+    if (this._owner !== this._user) {
+      this._deleteBtn.style.display = 'none';
+    }
     return this._card;
   }
 }

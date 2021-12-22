@@ -71,7 +71,19 @@ export default class Api {
     });
   }
   // удалить карточку (DELETE)
-
+  deleteCard({ _id }) {
+    return fetch(`${this._baseUrl}/cards/${_id}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(
+        `Произошла ошибка: ${res.status}, попробуйте снова.`
+      );
+    });
+  }
   // заменить аватар (PATCH)
 
   // “залайкать” карточку (PUT)
