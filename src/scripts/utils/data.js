@@ -30,22 +30,6 @@ const settings = {
   errorClass: 'popup__input-error_active',
 };
 
-import croatiaImage from '../../images/elements/croatia.jpg';
-import leccoImage from '../../images/elements/lecco.jpg';
-import moscowImage from '../../images/elements/moscow.jpg';
-import pisaImage from '../../images/elements/pisa.jpg';
-import romaImage from '../../images/elements/roma.jpg';
-import veneziaImage from '../../images/elements/venezia.jpg';
-
-const initialCards = [
-  { name: 'Мыс Марлера', link: croatiaImage },
-  { name: 'Лекко', link: leccoImage },
-  { name: 'Москва', link: moscowImage },
-  { name: 'Пиза', link: pisaImage },
-  { name: 'Ватикан', link: romaImage },
-  { name: 'Венеция', link: veneziaImage },
-];
-
 export {
   profileForm,
   newCardForm,
@@ -57,5 +41,4 @@ export {
   avatarButton,
   selectors,
   settings,
-  initialCards,
 };

@@ -113,7 +113,6 @@ const renderCard = (data) => {
   return card.createCard();
 };
 
-console.log(user);
 // popups
 const popupProfile = new PopupWithForm(
   selectors.popupProfileSelector,
