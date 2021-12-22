@@ -10,10 +10,12 @@ import PopupWithConfirm from '../scripts/components/PopupWithConfirm.js';
 import {
   profileForm,
   newCardForm,
+  avatarForm,
   nameInput,
   aboutInput,
   editButton,
   addButton,
+  avatarButton,
   selectors,
   settings,
 } from '../scripts/utils/data.js';
@@ -26,8 +28,40 @@ const api = new Api({
   },
 });
 
-const popupConfirmDelete = new PopupWithConfirm(selectors.popupDeleteSelector);
-popupConfirmDelete.setEventListeners();
+// validation
+const profileFormValidator = new FormValidator(settings, profileForm);
+const newCardFormValidator = new FormValidator(settings, newCardForm);
+const avatarFormValidator = new FormValidator(settings, avatarForm);
+avatarFormValidator.enableValidation();
+newCardFormValidator.enableValidation();
+profileFormValidator.enableValidation();
+
+// user information
+const userInfo = new UserInfo(selectors);
+
+// current user
+let user;
+
+const cardSection = new Section(
+  {
+    renderer: (card) => {
+      cardSection.addItem(renderCard(card));
+    },
+  },
+  selectors
+);
+
+// initial rendering
+api
+  .getAllInitialData()
+  .then(([cards, info]) => {
+    user = info._id;
+    userInfo.setUserInfo(info);
+    cardSection.render(cards);
+  })
+  .catch((err) => {
+    console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
+  });
 
 const renderCard = (data) => {
   const card = new Card(
@@ -79,73 +113,38 @@ const renderCard = (data) => {
   return card.createCard();
 };
 
-// validation
-const profileFormValidator = new FormValidator(settings, profileForm);
-const newCardFormValidator = new FormValidator(settings, newCardForm);
-newCardFormValidator.enableValidation();
-profileFormValidator.enableValidation();
-
-// user information
-const userInfo = new UserInfo(selectors);
-let user;
-api
-  .getAllInitialData()
-  .then(([cards, info]) => {
-    user = info._id;
-  })
-  .catch((err) => {
-    console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
-  });
-// initial info rendering
-api
-  .getUserInfo()
-  .then((data) => {
-    userInfo.setUserInfo(data);
-  })
-  .catch((err) => {
-    //реализовать логику ошибки (заполнение полей из html)
-    console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
-  });
-// initial card rendering
-const cardSection = new Section(
-  {
-    renderer: (card) => {
-      cardSection.addItem(renderCard(card));
-    },
-  },
-  selectors
-);
-
-api
-  .getInitialCards()
-  .then((data) => {
-    cardSection.render(data);
-  })
-  .catch((err) => {
-    //реализовать логику ошибки через оформление секции другими данными?
-    console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
-  });
-
+console.log(user);
 // popups
 const popupProfile = new PopupWithForm(
   selectors.popupProfileSelector,
   (userData) => {
     api
       .setUserInfo(userData)
-      .then((data) => {
-        userInfo.setUserInfo(data);
+      .then((info) => {
+        userInfo.setUserInfo(info);
       })
       .catch((err) => {
-        //реализовать логику ошибки
         console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
       });
   }
 );
 
+const popupAvatar = new PopupWithForm(selectors.popupAvatarSelector, (data) => {
+  api
+    .setAvatar(data)
+    .then((avatar) => {
+      console.log(avatar);
+      userInfo.setUserAvatar(avatar);
+      popupAvatar.close();
+    })
+    .catch((err) => {
+      console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
+    });
+});
+
 const popupNewCard = new PopupWithForm(
   selectors.popupNewCardSelector,
   (data) => {
-    //const card = renderCard(data);
     api
       .postCard(data)
       .then((card) => {
@@ -155,17 +154,18 @@ const popupNewCard = new PopupWithForm(
         //реализовать логику ошибки
         console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
       });
-    // cardSection.addItem(renderCard(data));
   }
 );
 
 const popupWithImage = new PopupWithImage(selectors.popupImageSelector);
-
-popupWithImage.setEventListeners();
+const popupConfirmDelete = new PopupWithConfirm(selectors.popupDeleteSelector);
+// events
+popupAvatar.setEventListeners();
 popupProfile.setEventListeners();
 popupNewCard.setEventListeners();
+popupWithImage.setEventListeners();
+popupConfirmDelete.setEventListeners();
 
-// events
 editButton.addEventListener('click', () => {
   const { name, about } = userInfo.getUserInfo();
   nameInput.value = name;
@@ -179,4 +179,10 @@ addButton.addEventListener('click', () => {
   newCardFormValidator.resetError();
   newCardFormValidator.disableButton();
   popupNewCard.open();
+});
+
+avatarButton.addEventListener('click', () => {
+  avatarFormValidator.resetError();
+  avatarFormValidator.disableButton();
+  popupAvatar.open();
 });
