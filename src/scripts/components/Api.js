@@ -4,7 +4,6 @@ export default class Api {
     this._headers = headers;
   }
 
-  // получить данные пользователя (GET)
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
@@ -19,7 +18,6 @@ export default class Api {
     });
   }
 
-  // заменить данные пользователя (PATCH)
   setUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
@@ -38,7 +36,6 @@ export default class Api {
     });
   }
 
-  // получить список всех карточек в виде массива (GET)
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
@@ -52,7 +49,6 @@ export default class Api {
     });
   }
 
-  // добавить карточку (POST)
   postCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
@@ -70,7 +66,7 @@ export default class Api {
       );
     });
   }
-  // удалить карточку (DELETE)
+
   deleteCard({ _id }) {
     return fetch(`${this._baseUrl}/cards/${_id}`, {
       method: 'DELETE',
@@ -84,7 +80,7 @@ export default class Api {
       );
     });
   }
-  // заменить аватар (PATCH)
+
   setAvatar({ avatar }) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
@@ -102,7 +98,6 @@ export default class Api {
     });
   }
 
-  // “залайкать” карточку (PUT)
   like(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'PUT',
@@ -117,7 +112,6 @@ export default class Api {
     });
   }
 
-  // удалить лайк карточки (DELETE)
   dislike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'DELETE',
@@ -132,9 +126,6 @@ export default class Api {
     });
   }
 
-  // Например метод, который отдаст промис, ожидающий исполнение нескольких методов класса
-  // (например, подумайте какие методы надо исполнить прежде чем начать отрисовку и прочее
-  //   на странице, и можете посмотрите в сторону Promise.all - https://yadi.sk/d/llP56OMEAOKMVg)
   getAllInitialData() {
     return Promise.all([this.getInitialCards(), this.getUserInfo()]);
   }
