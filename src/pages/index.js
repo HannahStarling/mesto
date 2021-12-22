@@ -6,6 +6,7 @@ import UserInfo from '../scripts/components/UserInfo.js';
 import FormValidator from '../scripts/components/FormValidator.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
+import PopupWithConfirm from '../scripts/components/PopupWithConfirm.js';
 import {
   profileForm,
   newCardForm,
@@ -15,7 +16,6 @@ import {
   addButton,
   selectors,
   settings,
-  initialCards,
 } from '../scripts/utils/data.js';
 
 const api = new Api({
@@ -32,6 +32,8 @@ const renderCard = (data) => {
   }).createCard();
   return card;
 };
+
+const popupConfirmDelete = new PopupWithConfirm(selectors.popupDeleteSelector);
 
 // validation
 const profileFormValidator = new FormValidator(settings, profileForm);

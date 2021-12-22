@@ -13,6 +13,7 @@ const selectors = {
   popupImageSelector: '.popup_type_image',
   popupProfileSelector: '.popup_type_edit-profile',
   popupNewCardSelector: '.popup_type_add-card',
+  popupDeleteSelector: '.popup_type_delete-card',
   containerSelector: '.elements__list',
 };
 
