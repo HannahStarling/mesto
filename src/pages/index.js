@@ -27,8 +27,33 @@ const api = new Api({
 });
 
 const renderCard = (data) => {
-  const card = new Card(data, selectors, () => {
-    popupWithImage.open(data);
+  const card = new Card(data, selectors, {
+    handleCardClick: () => {
+      popupWithImage.open(data);
+    },
+    handleCardDelete: () => {
+      popupConfirmDelete.open();
+    },
+    likeHandler: (e, id) => {
+      api
+        .like(id)
+        .then(() => {
+          e.target.classList.add('elements__like-btn_active');
+        })
+        .catch((err) => {
+          console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
+        });
+    },
+    dislikeHandler: (e, id) => {
+      api
+        .dislike(id)
+        .then(() => {
+          e.target.classList.remove('elements__like-btn_active');
+        })
+        .catch((err) => {
+          console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
+        });
+    },
   }).createCard();
   return card;
 };
