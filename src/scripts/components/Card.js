@@ -69,9 +69,7 @@ export default class Card {
       this._deleteBtn.style.display = 'none';
     }
 
-    const isLiked = this._likes.find(({ _id }) => {
-      return _id === this._user;
-    });
+    const isLiked = this._likes.find(({ _id }) => _id === this._user);
     if (isLiked) {
       this._likeBtn.classList.add('elements__like-btn_active');
     }

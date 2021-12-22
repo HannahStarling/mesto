@@ -132,7 +132,6 @@ const popupAvatar = new PopupWithForm(selectors.popupAvatarSelector, (data) => {
   api
     .setAvatar(data)
     .then((avatar) => {
-      console.log(avatar);
       userInfo.setUserAvatar(avatar);
       popupAvatar.close();
     })
