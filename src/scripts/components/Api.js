@@ -4,18 +4,48 @@ export default class Api {
     this._headers = headers;
   }
 
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'GET',
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(
+        `Произошла ошибка: ${res.status}, попробуйте снова.`
+      );
+    });
+  }
+
+  setUserInfo({ name, about }) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        about: about,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(
+        `Произошла ошибка: ${res.status}, попробуйте снова.`
+      );
+    });
+  }
+
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(
-          `Произошла ошибка: ${res.status}, попробуйте снова.`
-        );
-      })
-      .then((data) => data);
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(
+        `Произошла ошибка: ${res.status}, попробуйте снова.`
+      );
+    });
   }
 }

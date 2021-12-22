@@ -2,13 +2,13 @@ const profile = document.querySelector('.profile');
 const profileForm = document.forms.user;
 const newCardForm = document.forms.card;
 const nameInput = profileForm.querySelector('.popup__item_el_name');
-const aboutInput = profileForm.querySelector('.popup__item_el_description');
+const aboutInput = profileForm.querySelector('.popup__item_el_about');
 const editButton = profile.querySelector('.profile__btn_action_edit');
 const addButton = profile.querySelector('.profile__btn_action_add');
 
 const selectors = {
   name: '.profile__name',
-  info: '.profile__description',
+  about: '.profile__description',
   cardSelector: '.card-template',
   popupImageSelector: '.popup_type_image',
   popupProfileSelector: '.popup_type_edit-profile',

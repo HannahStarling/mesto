@@ -42,6 +42,24 @@ profileFormValidator.enableValidation();
 // user information
 const userInfo = new UserInfo(selectors);
 
+// initial info rendering
+api
+  .getUserInfo()
+  .then((data) => {
+    userInfo.setUserInfo(data);
+  })
+  .catch((err) => {
+    //реализовать логику ошибки (заполнение полей из html)
+    console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
+    // const { name, about, avatar } = {
+    //   name: 'Здесь будет Ваше имя',
+    //   about: 'Здесь немного о вас',
+    //   avatar:
+    //     'https://images.unsplash.com/photo-1457449940276-e8deed18bfff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    // };
+    // userInfo.setUserInfo({ name, about, avatar });
+  });
+
 // initial card rendering
 const cardSection = new Section(
   {
@@ -64,9 +82,20 @@ api
   });
 
 // popups
-const popupProfile = new PopupWithForm(selectors.popupProfileSelector, () => {
-  userInfo.setUserInfo(nameInput, aboutInput);
-});
+const popupProfile = new PopupWithForm(
+  selectors.popupProfileSelector,
+  (userData) => {
+    api
+      .setUserInfo(userData)
+      .then((data) => {
+        userInfo.setUserInfo(data);
+      })
+      .catch((err) => {
+        //реализовать логику ошибки
+        console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
+      });
+  }
+);
 
 const popupNewCard = new PopupWithForm(
   selectors.popupNewCardSelector,
@@ -83,9 +112,9 @@ popupNewCard.setEventListeners();
 
 // events
 editButton.addEventListener('click', () => {
-  const { name, info } = userInfo.getUserInfo();
+  const { name, about } = userInfo.getUserInfo();
   nameInput.value = name;
-  aboutInput.value = info;
+  aboutInput.value = about;
   profileFormValidator.disableButton();
   profileFormValidator.resetError();
   popupProfile.open();
