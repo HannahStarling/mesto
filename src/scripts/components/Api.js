@@ -115,4 +115,11 @@ export default class Api {
       );
     });
   }
+
+  // Например метод, который отдаст промис, ожидающий исполнение нескольких методов класса
+  // (например, подумайте какие методы надо исполнить прежде чем начать отрисовку и прочее
+  //   на странице, и можете посмотрите в сторону Promise.all - https://yadi.sk/d/llP56OMEAOKMVg)
+  getAllInitialData() {
+    return Promise.all([this.getInitialCards(), this.getUserInfo()]);
+  }
 }

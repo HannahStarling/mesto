@@ -2,7 +2,8 @@ export default class Card {
   constructor(
     { name, link, likes, _id, owner },
     { cardSelector },
-    { handleCardClick, handleCardDelete, likeHandler, dislikeHandler }
+    { handleCardClick, handleCardDelete, likeHandler, dislikeHandler },
+    user
   ) {
     this._name = name;
     this._link = link;
@@ -42,11 +43,10 @@ export default class Card {
 
     this._likeBtn.addEventListener('click', (e) => {
       if (e.target.classList.contains('elements__like-btn_active')) {
-        this._dislikeHandler(e, this._id);
+        this._dislikeHandler(e, this._id, this._counter);
       } else {
-        this._likeHandler(e, this._id);
+        this._likeHandler(e, this._id, this._counter);
       }
-      this._counter.textContent = this._likes.length;
     });
     this._deleteBtn.addEventListener('click', () => {
       this._handleCardDelete();
@@ -68,6 +68,14 @@ export default class Card {
     if (this._owner !== this._user) {
       this._deleteBtn.style.display = 'none';
     }
+
+    const isLiked = this._likes.find(({ _id }) => {
+      return _id === this._user;
+    });
+    if (isLiked) {
+      this._likeBtn.classList.add('elements__like-btn_active');
+    }
+
     return this._card;
   }
 }

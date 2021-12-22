@@ -30,45 +30,52 @@ const popupConfirmDelete = new PopupWithConfirm(selectors.popupDeleteSelector);
 popupConfirmDelete.setEventListeners();
 
 const renderCard = (data) => {
-  const card = new Card(data, selectors, {
-    handleCardClick: () => {
-      popupWithImage.open(data);
-    },
-    handleCardDelete: () => {
-      popupConfirmDelete.confirmHandler(() => {
+  const card = new Card(
+    data,
+    selectors,
+    {
+      handleCardClick: () => {
+        popupWithImage.open(data);
+      },
+      handleCardDelete: () => {
+        popupConfirmDelete.confirmHandler(() => {
+          api
+            .deleteCard(data)
+            .then(() => {
+              card.deleteCard();
+              popupConfirmDelete.close();
+            })
+            .catch((err) => {
+              console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
+            });
+        });
+        popupConfirmDelete.open();
+      },
+      likeHandler: (e, id, counter) => {
         api
-          .deleteCard(data)
-          .then(() => {
-            card.deleteCard();
-            popupConfirmDelete.close();
+          .like(id)
+          .then(({ likes }) => {
+            e.target.classList.add('elements__like-btn_active');
+            counter.textContent = `${likes.length}`;
           })
           .catch((err) => {
             console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
           });
-      });
-      popupConfirmDelete.open();
+      },
+      dislikeHandler: (e, id, counter) => {
+        api
+          .dislike(id)
+          .then(({ likes }) => {
+            e.target.classList.remove('elements__like-btn_active');
+            counter.textContent = `${likes.length}`;
+          })
+          .catch((err) => {
+            console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
+          });
+      },
     },
-    likeHandler: (e, id) => {
-      api
-        .like(id)
-        .then(() => {
-          e.target.classList.add('elements__like-btn_active');
-        })
-        .catch((err) => {
-          console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
-        });
-    },
-    dislikeHandler: (e, id) => {
-      api
-        .dislike(id)
-        .then(() => {
-          e.target.classList.remove('elements__like-btn_active');
-        })
-        .catch((err) => {
-          console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
-        });
-    },
-  });
+    user
+  );
   return card.createCard();
 };
 
@@ -80,7 +87,15 @@ profileFormValidator.enableValidation();
 
 // user information
 const userInfo = new UserInfo(selectors);
-
+let user;
+api
+  .getAllInitialData()
+  .then(([cards, info]) => {
+    user = info._id;
+  })
+  .catch((err) => {
+    console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
+  });
 // initial info rendering
 api
   .getUserInfo()
@@ -91,7 +106,6 @@ api
     //реализовать логику ошибки (заполнение полей из html)
     console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
   });
-
 // initial card rendering
 const cardSection = new Section(
   {
