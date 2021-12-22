@@ -51,21 +51,13 @@ api
   .catch((err) => {
     //реализовать логику ошибки (заполнение полей из html)
     console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
-    // const { name, about, avatar } = {
-    //   name: 'Здесь будет Ваше имя',
-    //   about: 'Здесь немного о вас',
-    //   avatar:
-    //     'https://images.unsplash.com/photo-1457449940276-e8deed18bfff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
-    // };
-    // userInfo.setUserInfo({ name, about, avatar });
   });
 
 // initial card rendering
 const cardSection = new Section(
   {
-    renderer: (item) => {
-      const card = renderCard(item);
-      cardSection.addItem(card);
+    renderer: (card) => {
+      cardSection.addItem(renderCard(card));
     },
   },
   selectors
