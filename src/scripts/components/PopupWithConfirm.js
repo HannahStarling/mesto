@@ -6,6 +6,8 @@ export default class PopupWithConfirm extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
     this._form = this._popup.querySelector('.popup__form');
+    this._button = this._form.querySelector('.popup__btn_action_submit');
+    this._buttonTxt = this._button.textContent;
   }
   // Поэтому должна быть возможность при открытии попапа переопределять через публичный метод (id)
   confirmHandler(submitHandler) {
@@ -20,5 +22,11 @@ export default class PopupWithConfirm extends Popup {
       this._submitHandler();
       this.close();
     });
+  }
+
+  renderLoading(isLoading) {
+    isLoading
+      ? (this._button.textContent = 'Удаление...')
+      : (this._button.textContent = this._button.textContent);
   }
 }

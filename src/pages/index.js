@@ -76,12 +76,14 @@ const renderCard = (data) => {
           api
             .deleteCard(data)
             .then(() => {
+              popupConfirmDelete.renderLoading(true);
               card.deleteCard();
               popupConfirmDelete.close();
             })
             .catch((err) => {
               console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
-            });
+            })
+            .finally(popupConfirmDelete.renderLoading(false));
         });
         popupConfirmDelete.open();
       },
@@ -120,11 +122,13 @@ const popupProfile = new PopupWithForm(
     api
       .setUserInfo(userData)
       .then((info) => {
+        popupProfile.renderLoading(true);
         userInfo.setUserInfo(info);
       })
       .catch((err) => {
         console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
-      });
+      })
+      .finally(popupProfile.renderLoading(false));
   }
 );
 
@@ -132,12 +136,14 @@ const popupAvatar = new PopupWithForm(selectors.popupAvatarSelector, (data) => {
   api
     .setAvatar(data)
     .then((avatar) => {
+      popupAvatar.renderLoading(true);
       userInfo.setUserAvatar(avatar);
       popupAvatar.close();
     })
     .catch((err) => {
       console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
-    });
+    })
+    .finally(popupAvatar.renderLoading(false));
 });
 
 const popupNewCard = new PopupWithForm(
@@ -146,12 +152,14 @@ const popupNewCard = new PopupWithForm(
     api
       .postCard(data)
       .then((card) => {
+        popupNewCard.renderLoading(true);
         cardSection.addItem(renderCard(card));
       })
       .catch((err) => {
         //реализовать логику ошибки
         console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
-      });
+      })
+      .finally(popupNewCard.renderLoading(false));
   }
 );
 
