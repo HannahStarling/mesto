@@ -83,7 +83,7 @@ const renderCard = (data) => {
             .catch((err) => {
               console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
             })
-            .finally(popupConfirmDelete.renderLoading(false));
+            .finally(() => popupConfirmDelete.renderLoading(false));
         });
         popupConfirmDelete.open();
       },
@@ -128,7 +128,7 @@ const popupProfile = new PopupWithForm(
       .catch((err) => {
         console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
       })
-      .finally(popupProfile.renderLoading(false));
+      .finally(() => popupProfile.renderLoading(false));
   }
 );
 
@@ -143,7 +143,7 @@ const popupAvatar = new PopupWithForm(selectors.popupAvatarSelector, (data) => {
     .catch((err) => {
       console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
     })
-    .finally(popupAvatar.renderLoading(false));
+    .finally(() => popupAvatar.renderLoading(false));
 });
 
 const popupNewCard = new PopupWithForm(
@@ -159,7 +159,7 @@ const popupNewCard = new PopupWithForm(
         //реализовать логику ошибки
         console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
       })
-      .finally(popupNewCard.renderLoading(false));
+      .finally(() => popupNewCard.renderLoading(false));
   }
 );
 
