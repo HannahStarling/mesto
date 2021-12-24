@@ -8,7 +8,10 @@ export default class Api {
     if (res.ok) {
       return res.json();
     }
-    return Promise.reject(`Произошла ошибка: ${res.status}, попробуйте снова.`);
+    return Promise.reject({
+      name: `Произошла ошибка на стороне сервера: ${res.status}, попробуйте снова.`,
+      isServerError: true,
+    });
   }
 
   getUserInfo() {

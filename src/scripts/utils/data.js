@@ -18,6 +18,7 @@ const selectors = {
   popupNewCardSelector: '.popup_type_add-card',
   popupDeleteSelector: '.popup_type_delete-card',
   popupAvatarSelector: '.popup_type_edit-avatar',
+  popupErrorSelector: '.popup_type_error',
   containerSelector: '.elements__list',
 };
 

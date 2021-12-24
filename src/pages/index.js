@@ -5,6 +5,7 @@ import Section from '../scripts/components/Section.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import FormValidator from '../scripts/components/FormValidator.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
+import PopupWithError from '../scripts/components/PopupWithError.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithConfirm from '../scripts/components/PopupWithConfirm.js';
 import {
@@ -36,6 +37,11 @@ avatarFormValidator.enableValidation();
 newCardFormValidator.enableValidation();
 profileFormValidator.enableValidation();
 
+// Обработка ошибок
+function showError(error) {
+  popupWithError.open(error);
+}
+
 // user information
 const userInfo = new UserInfo(selectors);
 
@@ -60,7 +66,7 @@ api
     cardSection.render(cards);
   })
   .catch((err) => {
-    console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
+    showError(err);
   });
 
 const renderCard = (data) => {
@@ -81,7 +87,7 @@ const renderCard = (data) => {
               popupConfirmDelete.close();
             })
             .catch((err) => {
-              console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
+              showError(err);
             })
             .finally(() => popupConfirmDelete.renderLoading(false));
         });
@@ -95,7 +101,7 @@ const renderCard = (data) => {
             counter.textContent = `${likes.length}`;
           })
           .catch((err) => {
-            console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
+            showError(err);
           });
       },
       dislikeHandler: (e, id, counter) => {
@@ -106,7 +112,7 @@ const renderCard = (data) => {
             counter.textContent = `${likes.length}`;
           })
           .catch((err) => {
-            console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
+            showError(err);
           });
       },
     },
@@ -126,7 +132,7 @@ const popupProfile = new PopupWithForm(
         userInfo.setUserInfo(info);
       })
       .catch((err) => {
-        console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
+        showError(err);
       })
       .finally(() => popupProfile.renderLoading(false));
   }
@@ -141,7 +147,7 @@ const popupAvatar = new PopupWithForm(selectors.popupAvatarSelector, (data) => {
       popupAvatar.close();
     })
     .catch((err) => {
-      console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
+      showError(err);
     })
     .finally(() => popupAvatar.renderLoading(false));
 });
@@ -156,8 +162,7 @@ const popupNewCard = new PopupWithForm(
         cardSection.addItem(renderCard(card));
       })
       .catch((err) => {
-        //реализовать логику ошибки
-        console.log(`Произошла ошибка: ${err}, попробуйте снова.`);
+        showError(err);
       })
       .finally(() => popupNewCard.renderLoading(false));
   }
@@ -165,7 +170,9 @@ const popupNewCard = new PopupWithForm(
 
 const popupWithImage = new PopupWithImage(selectors.popupImageSelector);
 const popupConfirmDelete = new PopupWithConfirm(selectors.popupDeleteSelector);
+const popupWithError = new PopupWithError(selectors.popupErrorSelector);
 // events
+popupWithError.setEventListeners();
 popupAvatar.setEventListeners();
 popupProfile.setEventListeners();
 popupNewCard.setEventListeners();
