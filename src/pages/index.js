@@ -130,6 +130,7 @@ const popupProfile = new PopupWithForm(
       .then((info) => {
         popupProfile.renderLoading(true);
         userInfo.setUserInfo(info);
+        popupProfile.close();
       })
       .catch((err) => {
         showError(err);
@@ -160,6 +161,7 @@ const popupNewCard = new PopupWithForm(
       .then((card) => {
         popupNewCard.renderLoading(true);
         cardSection.addItem(renderCard(card));
+        popupNewCard.close();
       })
       .catch((err) => {
         showError(err);
